@@ -35,7 +35,7 @@ def read_files(directory):
                 documents.append(Document(text=content))
     return documents
 
-qdrant_key = 'N7jUwnesBqzfkh8_v5tkAnzc09ka35LekyLQcY7LL36R9u_4mMTkbA'
+qdrant_key = 'Your Key'
 
 from qdrant_client import QdrantClient
 
