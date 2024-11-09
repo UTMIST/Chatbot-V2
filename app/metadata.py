@@ -21,7 +21,7 @@ from llama_index.core import (
 )
 
 # Set API key from environment
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "Your Key"
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 # Initialize the LLM with specific parameters

@@ -24,7 +24,7 @@ env_path = Path("..") / ".env"
 load_dotenv(dotenv_path=env_path)
 
 if not os.environ.get("OPENAI_API_KEY"):
-    os.environ["OPENAI_API_KEY"] = ""
+    os.environ["OPENAI_API_KEY"] = "Your Key"
 
 #add KEY before run!!
 
