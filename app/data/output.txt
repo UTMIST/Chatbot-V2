@@ -1,0 +1,614 @@
+AI chatbot Proposal
+Project Overview:
+Objective: 
+Develop an AI chatbot to efficiently address common student inquiries about UTMIST.
+
+Benefits: 
+Enhance communication with students, streamline responses, and potentially increase engagement with club events through targeted promotions.
+
+Project Scope and Project Deliverables:
+Function that can be extended onto different social media
+Chat bot system on UTMIST web page
+
+Alignment with UTMIST Goals:
+Given that the project is AI-related, it directly aligns with the core mission of our club. We could potentially hire a few developers to work on it as a project. Moreover, having a chatbot will not only contribute to more effective handling of student inquiries but will also serve as an innovative tool to promote club events and initiatives through social media platforms.
+
+Project Resource Requirements:
+	Developer recruiting
+Number? 
+
+Project Timeline:
+
+Potential risks:
+
+Function:
+Low-level function:
+	Detecting keywords 1. -> responding -> links/ manual
+2. -> with keywords -> we respond with “Do you mean the following questions?” with a question list -> allow them to click on the questions -> respond the corresponding answer
+
+High-level function:
+AI language model
+LLM
+Chatgpt based development
+
+Application on:
+	UTMIST web page
+Social media
+		Instagram
+
+Background (need to research):
+	Social media allowance
+	How to connect to social media chat
+	
+
+
+Plan
+1. Objective:
+Develop an AI chatbot to efficiently address common student inquiries and promote UTMIST events and initiatives.
+2. Team Composition:
+Lead Developer: 1 (experienced in AI/ML and chatbot development)
+Developers: 4-5 undergraduate students with skills in programming (Python, JavaScript), AI/ML, and web development.
+(If on the UTMIST web page) UX/UI Designer: 1 (for designing the chat interface and user experience)
+Project Supervisor/Coordinator: 1 (overseeing project progress, liaison between teams)
+3. Recruitment Process:
+Duration: 2 weeks
+Method: Post openings on club channels, university boards, and relevant online forums.
+Selection: Based on applications and a brief interview focusing on technical skills and teamwork ability.
+4. Development Phases:
+Phase 1: Planning and Design (Duration: 3 weeks)
+Define chatbot functionalities and features.
+Design conversation flow and user interface.
+Phase 2: Development (Duration: 8-10 weeks)
+Coding and integration of AI models.
+Development of the front end and back end.
+Phase 3: Testing and Iteration (Duration: 4 weeks)
+Conducting beta testing and gathering feedback.
+Iterating based on feedback and technical requirements.
+Phase 4: Implementation and Deployment (Duration: 2 weeks)
+Deploy the chatbot on the club website and integrate it with Instagram.
+Ensure compatibility and smooth operation.
+5. Midway Report/Update:
+Timeframe: Halfway through the Development Phase (~5 weeks into development)
+Purpose: Assess progress, address challenges, and make necessary adjustments.
+6. Soft Deadline for Completion:
+Approximately 6 months from project initiation.
+7. Implementation on Club Website and Instagram:
+Website Integration: Embed the chatbot widget on the UTMIST website using JavaScript or similar technologies.
+Instagram Integration: Utilize Instagram's API to integrate the chatbot, ensuring compliance with platform policies.
+8. Regular Meetings and Communication:
+Weekly meetings to track progress, discuss challenges, and plan next steps.
+Use of project management tools (like Trello or Asana) for task tracking and collaboration.
+9. Budget Considerations:
+Estimating costs for development tools, hosting services, and any additional resources needed.
+10. Post-Deployment:
+Monitoring the chatbot’s performance.
+Regular updates and maintenance based on user feedback and technological advancements.
+
+Key Concepts/ Functionalities/ Models
+Chatbot Functionalities
+User Intent Recognition: Understanding what the user wants through their input (e.g., asking about club events, registration processes, etc.). 
+Response Generation: Providing appropriate responses based on the user's intent. Conversation Management: Handling the flow of the conversation, including context management and maintaining the chat's state.
+Natural Language Processing (NLP): Processing and understanding human language inputs.
+Integration with External APIs: Fetching information from external sources (e.g., event details from a club's database).
+User Feedback Handling: Learning from user interactions to improve responses over time.
+Multi-platform Support: Functioning across various platforms like websites, social media, etc.
+Core Models & Concepts
+Natural Language Processing (NLP): Involves parsing and understanding human language. Tools like NLTK, spaCy, or proprietary tools from IBM, Google, or Microsoft are often used.
+Natural Language Understanding (NLU): A subset of NLP, that focuses on comprehending user intent and extracting information.
+Machine Learning and AI: Algorithms that enable the chatbot to learn from data and improve over time. Techniques like deep learning, especially recurrent neural networks (RNNs) and transformers, are common.
+Dialog Management: Systems that manage the flow of the conversation based on user input, context, and predefined scripts.
+Entity Recognition: Identifying and categorizing key information in user input (like dates, names, or specific queries).
+API Integration: For a chatbot to retrieve and send information from/to different databases or services (e.g., weather data, event details).
+Interview Questions
+General Questions
+Tell me about yourself and your background in programming and development.
+Why are you interested in working on this AI chatbot project?
+How do you stay updated with the latest trends and technologies in AI and chatbot development?
+Can you describe a project you are particularly proud of? What was your role in it?
+How do you prioritize tasks when working on multiple projects?
+Situational (Behavioral) Questions
+Describe a time when you had to work closely with others on a team. How did you handle disagreements or differing opinions?
+Tell us about a challenging problem you faced in a project and how you solved it.
+Have you ever had to learn a new technology or programming language quickly for a project? How did you manage it?
+Can you give an example of a time you received critical feedback on your work? How did you respond?
+Describe a situation where you had to meet a tight deadline. How did you ensure the quality of your work under pressure?
+Technical Questions
+What programming languages are you most comfortable with? How would these be relevant to chatbot development?
+Can you explain the concept of Natural Language Processing (NLP) and its importance in AI chatbots?
+Describe your experience with any AI or machine learning frameworks (like TensorFlow, PyTorch, etc.).
+How would you approach integrating a chatbot into a website or social media platform like Instagram?
+Can you discuss a method you would use to train the chatbot to understand and respond to user queries effectively?
+Have you worked with APIs before? Can you give an example of how you would use an API in a chatbot project?
+Explain how you would handle and store user data securely in a chatbot application.
+Bonus Technical Challenge (Optional)
+Coding Task: Provide a simple coding task relevant to the project, like creating a basic chatbot using a specific framework, to assess their practical skills.
+Recruitment 
+Project Overview:
+We are excited to announce an opportunity for talented developers to join a groundbreaking project at UTMIST. Our objective is to develop an AI chatbot that will efficiently address common student inquiries and promote our club events and initiatives. This AI chatbot will be a key tool in enhancing communication with students and streamlining responses, and it will be extended onto Discord (other social media platforms later on if possible).
+
+Your Role:
+As a developer on this project, you will be involved in:
+- Designing and coding the chatbot.
+- Implementing Natural Language Processing (NLP) and Machine Learning (ML) algorithms.
+- Integrating the chatbot with various APIs and social media platforms.
+- Collaborating on testing, feedback incorporation, and deployment processes.
+
+Requirements:
+- Proficiency in programming languages, preferably Python.
+- Familiarity with AI/ML concepts, particularly NLP.
+- Experience with or willingness to learn API integration and social media platform connectivity.
+- Strong problem-solving skills and the ability to work collaboratively in a team.
+- Commitment to the project timeline and active participation in regular meetings and updates.
+
+Project Timeline and Scope:
+The project spans approximately 6 months, encompassing planning, design, development, testing, and deployment phases. It aligns with UTMIST's mission to innovate and leverage AI technology. The chatbot will have both low-level functions, like keyword detection and response, and high-level functions, including an advanced AI language model and LLM-based development.
+
+Join us in this exciting venture to shape the future of AI interaction within UTMIST and beyond! Everyone will use and see your work!
+
+
+
+
+Recruitment:
+
+Chatbot Developer, ? Team 
+
+We are hiring developers for a new project, AI Chatbot. This project is focused on creating a chatbot to optimize the process of inquiring and responding. The project will then be implemented onto platforms to answer questions (everyone will use and see your work!) You will have the opportunity to actively contribute to every stage of a new project's development and testing, gaining insights into the intricate dynamics of technology-user interactions as developers, and witnessing the comprehensive execution of a project.
+
+Requirements
+
+The ideal candidate will have experience with Python
+Having experience in machine learning, NLP or creating chatbot is a plus
+Being able to teamwork on a project
+Familiar with platforms like Discord
+
+Email send: to applicants’ UT email!!!
+Template: 
+Cc: utmist and Calum’s email
+
+
+When to post:
+Weekends
+Friday evening
+Weekdays (5-8 pm)
+
+Behind-the-scenes: Share glimpses of your team's daily activities, project development, or event preparations. This humanizes your organization and gives followers a sense of the team's culture.
+
+Member Takeovers: Allow different team members to take over your Instagram account for a day or an event. They can share their experiences, insights, and personal stories related to UTMIST.
+
+Project Spotlights: Highlight ongoing research projects or academic achievements of your team members. Share brief explanations or teasers about the research and its significance.
+
+Event Promotion: Announce and promote upcoming UTMIST events, workshops, webinars, or meetings through Instagram stories. Use eye-catching visuals, countdowns, and location tags.
+
+Q&A Sessions: 
+Host live or recorded Q&A sessions where followers can ask questions about machine intelligence, technology trends, or UTMIST itself. Encourage engagement by using the question sticker.
+Story Q&A: Ask and answer our own questions
+
+Polls and Surveys: Use interactive polls and surveys to gather opinions and insights from your followers on topics related to machine intelligence, artificial intelligence, or UTMIST's activities.
+
+Educational Content: Share informative and visually appealing content related to machine intelligence, such as infographics, explainers, or quick facts. This can help position UTMIST as a knowledge hub.
+
+Alumni Success Stories: Share success stories of UTMIST alumni who have gone on to achieve great things in the field of machine intelligence. This can inspire current and prospective members.
+
+Collaboration Highlights: If UTMIST collaborates with other organizations, showcase these partnerships in your stories. This can help build a sense of community and shared goals.
+
+Member Introductions: Regularly introduce UTMIST members, sharing their backgrounds, roles, and interests within the organization. This personal touch can help your audience connect with the team.
+
+Tech Trends: Stay updated on the latest trends in machine intelligence and share insights about emerging technologies, research breakthroughs, or industry news.
+
+Contests and Challenges: Host contests or challenges related to machine intelligence topics, encouraging your followers to participate and engage with your content.
+
+Stories Highlights: Create themed highlights that categorize and organize your past stories, making it easier for new followers to explore your content.
+
+
+RL Program FAQs for Marketing Purpose
+
+Can graduate students participate? Is it only for U of T students? 
+Yes, definitely! We welcome undergraduate and graduate students! Also, it’s for everyone, including students outside of U of T. However, currently, we plan to offer this program in-person only at Bahen Center, UTSG. It may change based on student feedback and preference after the first session.
+
+I only did one course in introductory computer programming and some first-year math courses. Will I be ready to participate in the RL program?
+RL is math heavy more than programming heavy. We encourage you to still attend, but it would be optimal if you have learned convergent series, probability distributions, and sampling in your previous coursework or project work. 
+
+If you’re prepared with higher level programming and math knowledge such as linear algebra, multivariable calculus, and PyTorch, and you would like to dive deep into ML, our Paper Reading Group starting Feb 29, 2024 may be a great fit for you. You can attend both! 
+
+Why does UTMIST offer this program? Does U of T teach it? What specific topics will be covered in this month-long program?
+U of T does not offer a course which focuses primarily in Reinforcement Learning at St. George campus for undergraduate students. 
+
+We will cover topics from learning with dynamic programming and tabular-based methods to value function approximation and policy gradient methods. We wish to give a rundown of all the popular and leading-edge topics in the field of RL.
+
+Will the sessions be recorded? What if I miss a session? 
+We will do our best to do recordings, which depends on the room AV system at Bahen. 
+
+Our Academic Director works very hard to prepare slides and content for this program. Therefore, if you decide to participate in this program and aim to maximize your learning, we highly recommend you to attend all sessions on-site and ask your questions to our Academic Director during or after each session. 
+
+Will there be office hours or tutorial sessions? What if I have questions during the study of this program? 
+Our Academic Director currently doesn’t plan to hold office hours, but it may change depending on student feedback and questions after the first session. 
+
+We'll also be available during the session each week to answer any questions you may have. Of course, you can always message us or start a discussion on Discord. 
+
+Join UTMIST discord: https://discord.com/invite/88mSPw8 
+
+What can I do next after completion of the RL program? What should I take away? 
+Sessions will be lecture-style and knowledge-focused. You’ll be empowered with knowledge! If you enjoy RL, then you can explore research in the area as it's quite popular now. After the program, you’ll be ready to discuss it with a potential faculty supervisor during your application to a research program or supervised study course, read seminal papers in this field, and explore your own research topics, ultimately conducting advanced research in RL.
+
+Why is it important to learn paper reading?
+Because ML is such a fast evolving field and a lot of knowledge is not in textbooks or courses but fresh in newly published papers! Reading papers is the best way to keep up with the progress in this field!
+
+What are some benefits of learning it? 
+Our sessions will help you succeed in your school courses by supplementing them with hands-on experience! You will gain a deeper understanding of the architectures, experience using the PyTorch library. 
+
+What topics will be covered in this series of sessions?
+There will be four sessions with different focuses! First session focuses on vision, the second session on GAN, and the last two on NLP. 
+
+What types of papers are we reading?
+We are covering some of the most influential ML papers in the past decade! For example, during the first session, we will explore the ResNet and MobileNet paper. 
+
+What does the session look like?
+Each session will contain: a brief survey of the related field and background, a deep dive into the selected papers, live coding demonstration that implements part of the key architecture or technique. 
+
+Who is teaching us?
+Our UTMIST’s academics team! 
+
+Does UofT offer similar courses related to paper reading?
+Yes! APS360, ECE324, and CSC413 cover very similar topics! Our session complements the course curriculum!
+
+What prerequisite knowledge do I need to have?
+Basic knowledge of deep learning (everything related to a vanilla neural net). It's great if you also know the CNN architecture, but that's not required. 
+
+Will it be recorded? What if I miss a session?
+Unfortunately there are no recordings. However, the sessions have separate topics so even if you miss one you can still go to the next one!
+
+
+More questions here: Marketing Case Draft 
+Candidate Name: caitlin minyang zhang 
+Year of Study: 3
+Program of Study: mathecon
+
+
+
+
+
+
+Candidate Name: Huda Musa
+Year of Study: 2
+Program of Study: industrial eng 
+
+
+
+
+Candidate Name: Marco Fuentes
+Year of Study: 
+Program of Study: Rotman
+
+
+
+Candidate Name: Phoebe
+Year of Study: 2
+Program of Study: CS
+
+
+
+Candidate Name: 
+Year of Study: 
+Program of Study: 
+
+
+
+Richard Shuai (Acting VP Marketing & Co-President, UTMIST)
+Adalyn Yang (Digital Media Operations Director)
+Wen Fu (Graphic Designer – Special Projects)
+Erin Li (Digital Media Operations Director)
+Wen Fu (Graphic Designer – Special Projects)
+Diler Zaza (Graphic Design Director/Team Lead)
+Luthira Abeykoon (Graphic Designer)
+Niruthiha Selvanayagam (Graphic Designer)
+Kiarash Sotoudeh (Graphic Designer)
+Lucie Yang (Graphic Design Director/Team Lead)
+Eika Go (Graphic Designer)
+Erin Zhou (Graphic Designer)
+Wen Fu (Graphic Design – Special Projects)
+
+
+
+
+
+
+
+
+Error processing file Copy of Instagram Marketing Strategies : Error downloading file Copy of Instagram Marketing Strategies : <HttpError 403 when requesting https://www.googleapis.com/drive/v3/files/1QNpUqKDxk5LC2OEN-QDvOwlGs61p-_Ad3vRY0uKCR8k?alt=media returned "Only files with binary content can be downloaded. Use Export with Docs Editors files.". Details: "[{'message': 'Only files with binary content can be downloaded. Use Export with Docs Editors files.', 'domain': 'global', 'reason': 'fileNotDownloadable', 'location': 'alt', 'locationType': 'parameter'}]">
+
+
+About Immersion Night
+Immersion Night is the capstone event of Academics at UTMIST for the Winter 2024 term! With a combination of keynote speakers, collaborations (and food!), we want you to immerse yourself in a night of state of the art ML concepts! 
+7-8 Company Speakers
+Cohere
+Altis Labs
+Knockri
+Keynote Speaker #1 - Professor David Lindell
+Title: 
+Text-to-4D Generation Using Hybrid Score Distillation Sampling
+
+Abstract:
+Recent breakthroughs in text-to-4D generation rely on pre-trained text-to-image and text-to-video models to generate dynamic 3D scenes. However, current text-to-4D methods face a three-way tradeoff between the quality of scene appearance, 3D structure, and motion. For example, text-to-image models and their 3D-aware variants are trained on internet-scale image datasets and can be used to produce scenes with realistic appearance and 3D structure-but no motion. Text-to-video models are trained on relatively smaller video datasets and can produce scenes with motion, but poorer appearance and 3D structure. While these models have complementary strengths, they also have opposing weaknesses, making it difficult to combine them in a way that alleviates this three-way tradeoff. Here, we introduce hybrid score distillation sampling, an alternating optimization procedure that blends supervision signals from multiple pre-trained diffusion models and incorporates benefits of each for high-fidelity text-to-4D generation. Using hybrid SDS, we demonstrate synthesis of 4D scenes with compelling appearance, 3D structure, and motion.
+
+Speaker Bio
+David Lindell is an Assistant Professor in the Department of Computer Science at the University of Toronto. His research combines optics, emerging sensor platforms, neural representations, and physics-based algorithms to enable new capabilities in visual computing. Professor Lindell’s research has a wide array of applications including autonomous navigation, virtual and augmented reality, and remote sensing. Prior to joining the University of Toronto, he received his Ph.D. from Stanford University. He is the recipient of the 2021 ACM SIGGRAPH Outstanding Dissertation Honorable Mention Award. https://davidlindell.com/ 
+
+Photo
+
+Keynote Speaker #2 - Jonas Guan
+Title:
+Introduction to Hebbian Learning
+
+Abstract:
+Backpropagation is the cornerstone of deep learning, yet it’s not biologically plausible, and falls far short of the brain’s efficiency and robustness. Unlike backprop, which is purely error-driven, the brain’s learning process integrates the associative, unsupervised Hebbian learning with error-driven learning, to spectacular results. Hebbian-based learning promises increased parallelization, sparsity, data reuse across tasks, and robustness against adversarial examples. This talk explores how to design Hebbian deep learning algorithms for artificial neural networks. Drawing upon recent advancements in neuroscience on biological learning, we embark on an adventure to develop biologically-inspired learning algorithms that could redefine our approach to AI.
+
+Speaker Bio
+Jonas Guan is a PhD candidate in CS/neuroscience supervised by Nicolas Papernot and William Cunningham. He works on developing new deep learning algorithms that are inspired by biology, and stubbornly believes that this is the path to AGI (for good reason, he’ll show you). In a previous life, he worked in cybersecurity doing red teaming and malware reverse engineering. Before that he studied philosophy. He likes DnD, boxing, sleeping, and owns like 3 cool jackets.
+
+Photo
+
+Dinner - TBD 
+Collaborative Event - U of T CV Club
+Website: https://www.cvdg.tech/
+IG: https://www.instagram.com/uoftcv/  
+Twitter: https://twitter.com/uoftcv   
+LinkedIn: https://www.linkedin.com/company/cvdg/  
+
+Abstract 
+https://arxiv.org/abs/2306.02850  
+In this paper reading/ paper breakdown, we break down the paper explaining the interesting field of 5D vision. We will first start by providing an overview of how the problem can be built and what exactly the problem statement with this area of works usually is and then we explore intuitively how the models in "TRACE: 5D Temporal Regression of Avatars with Dynamic Cameras in 3D Environments" paper work towards solving this problem. We mainly target undergraduate students who are interested in learning about the field of vision! We expect high-school math to best understand the content we present. 
+
+Speaker Bio
+Shivesh Prakash is an organizer at the UofT Computer Vision Club and an Undergraduate Researcher at MSRG, where he uses AI to tackle challenges in Science. He has been in and around Computer Vision for over a year and is excited to share his knowledge. 
+
+
+Aryaman Bansal is a physics student at UofT, involved in the Computer Vision Club as an organizer. He enjoys learning about deep learning and has been exploring this field for a year. He hopes to share some of what he has learned. 
+
+
+About U of T CV Group 
+The University of Toronto Computer Vision group is a newly founded student community for everyone interested in Computer Vision and Machine Learning. The primary goal for UofT CV is to be the community and form a special interest group for Computer Vision. You can find us on https://www.cvdg.tech/
+
+
+
+
+
+Timeline
+5-6pm: Unsure if we can book atrium
+6:00 - 6:30pm: David Lindell - 4D Generation
+6:30 - 7:00pm: Jonas Guan - Hebbian Learning
+7:00 - 8:007:30pm: Dinner & Sponsorship
+8:00pm - 9:00pm: U of T CV club collaborative paper reading
+
+Keynote questions - 2 max. Any extras shall be submitted to UTMIST after the event.
+
+
+
+
+
+Rough Notes
+Agenda
+Introduce UTMIST Immersion Day
+Introduce UofT CV
+Initiatives: 
+Paper discussion groups
+Researcher talks (about preprints)
+Foundational paper introduction
+Narrow down to a few topics
+Come with a few formats (workshops, paper survey, debate, panel)
+UTMIST: Take care of registrations, club parameters
+Timeline: 
+Format: 
+Other options: Debate (collaboration with our directors), other creative formats, panel/paper survey
+Finalize a timeline of communication and coordination
+contact@cvdg.tech
+Once a month meeting with agenda
+Questions from CV club
+Time? 3-4 hours total. Immersion Night - 3 hours.
+
+
+
+Thank you for your interest in UTMIST! About UTMIST - The largest ML student society at UofT - The only design team in the field of ML - Career-oriented, with past members working at Intel, Amazon, Qualcomm, Borealis AI (RBC), Huawei, Google, Uber - 2000+ community members with 150+ developers & executives every year  To join the Club: Current Opportunities - The Mentorship Program: Industry Track & Research Track with paired mentorship, for fresh beginners to break into ML & AI  - LLM Acceleration Program: Learn LLM and AI safety in 4 workshops plus a project  - ML Projects: Apply as a ML Developer to join your preferred project team(s) and produce results in a 6-month development cycle (Including a LLM Competition Team)  - deMISTify Journal: Apply as a Technical Writer to produce monthly ML articles  - Academics: Apply as an Academic Director to prepare and lead technical workshops  - Non-technical positions: Join Industry & University Relations, Logistics (Events), Marketing, and Internal (Finance) teams  Interested? Register or apply via this QR code!  Thank you for your interest in UTMIST! About UTMIST - The largest ML student society at UofT - The only design team in the field of ML - Career-oriented, with past members working at Intel, Amazon, Qualcomm, Borealis AI (RBC), Huawei, Google, Uber - 2000+ community members with 150+ developers & executives every year  To join the Club: Current Opportunities - The Mentorship Program: Industry Track & Research Track with paired mentorship, for fresh beginners to break into ML & AI  - LLM Acceleration Program: Learn LLM and AI safety in 4 workshops plus a project  - ML Projects: Apply as a ML Developer to join your preferred project team(s) and produce results in a 6-month development cycle (Including a LLM Competition Team)  - deMISTify Journal: Apply as a Technical Writer to produce monthly ML articles  - Academics: Apply as an Academic Director to prepare and lead technical workshops  - Non-technical positions: Join Industry & University Relations, Logistics (Events), Marketing, and Internal (Finance) teams  Interested? Register or apply via this QR code!  Thank you for your interest in UTMIST! About UTMIST - The largest ML student society at UofT - The only design team in the field of ML - Career-oriented, with past members working at Intel, Amazon, Qualcomm, Borealis AI (RBC), Huawei, Google, Uber - 2000+ community members with 150+ developers & executives every year  To join the Club: Current Opportunities - The Mentorship Program: Industry Track & Research Track with paired mentorship, for fresh beginners to break into ML & AI  - LLM Acceleration Program: Learn LLM and AI safety in 4 workshops plus a project  - ML Projects: Apply as a ML Developer to join your preferred project team(s) and produce results in a 6-month development cycle (Including a LLM Competition Team)  - deMISTify Journal: Apply as a Technical Writer to produce monthly ML articles  - Academics: Apply as an Academic Director to prepare and lead technical workshops  - Non-technical positions: Join Industry & University Relations, Logistics (Events), Marketing, and Internal (Finance) teams  Interested? Register or apply via this QR code!  
+Upcoming Event: EigenAI Conference (Fewer than 80 general admission tickets left!) Who: Joint event with CSSU and Qualcomm Target Audiences: ML enthusiasts at all levels When: Saturday, September 16, 9 AM – 5 PM Where: Bahen Centre (BA1160 & BA1130)  At EigenAI, you’ll be exposed to: - Networking booths with Qualcomm, Vector Institute, Jarvis Consulting Group - Faculty keynotes, covering robotics, neural rendering, remote sensing, etc. - Workshops, such as “How to ML”, “How to not be replaced by AI”, Building AI startups - Project Fair to learn about the ML models, results, and impact of UTMIST past projects - Overview of the 2023-24 cycle’s projects - Roundtable for past execs to share how UTMIST has empowered their early career - Free lunch and catering will be provided  Register for EigenAI now via previous Linktree!  Follow UTMIST on Instagram: @uoft_utmist Follow UTMIST on LinkedIn: Search UTMIST  Subscribe our Newsletters below to receive key event updates and monthly technical articles               (Left: Newsletters; Right: Discord)  Join our Discord Server – A community to share your questions about AI, career, UofT, and more Upcoming Event: EigenAI Conference (Fewer than 80 general admission tickets left!) Who: Joint event with CSSU and Qualcomm Target Audiences: ML enthusiasts at all levels When: Saturday, September 16, 9 AM – 5 PM Where: Bahen Centre (BA1160 & BA1130)  At EigenAI, you’ll be exposed to: - Networking booths with Qualcomm, Vector, Jarvis Consulting Group, etc. - Faculty keynotes, covering robotics, neural rendering, remote sensing, etc. - Workshops, such as “How to ML”, “How to not be replaced by AI”, Building AI startups - Project Fair to learn about the ML models, results, and impact of UTMIST past projects - Overview of the 2023-24 cycle’s projects - Roundtable for past execs to share how UTMIST has empowered their early career - Free lunch and catering will be provided  Register for EigenAI now via previous Linktree!  Follow UTMIST on Instagram: @uoft_utmist Follow UTMIST on LinkedIn: Search UTMIST  Subscribe our Newsletters below to receive key event updates and monthly technical articles               (Left: Newsletters; Right: Discord)  Join our Discord Server – A community to share your questions about AI, career, UofT, and more Upcoming Event: EigenAI Conference (Fewer than 80 general admission tickets left!) Who: Joint event with CSSU and Qualcomm Target Audiences: ML enthusiasts at all levels When: Saturday, September 16, 9 AM – 5 PM Where: Bahen Centre (BA1160 & BA1130)  At EigenAI, you’ll be exposed to: - Networking booths with Qualcomm, Vector, Jarvis Consulting Group, etc. - Faculty keynotes, covering robotics, neural rendering, remote sensing, etc. - Workshops, such as “How to ML”, “How to not be replaced by AI”, Building AI startups - Project Fair to learn about the ML models, results, and impact of UTMIST past projects - Overview of the 2023-24 cycle’s projects - Roundtable for past execs to share how UTMIST has empowered their early career - Free lunch and catering will be provided  Register for EigenAI now via previous Linktree!  Follow UTMIST on Instagram: @uoft_utmist Follow UTMIST on LinkedIn: Search UTMIST  Subscribe our Newsletters below to receive key event updates and monthly technical articles               (Left: Newsletters; Right: Discord)  Join our Discord Server – A community to share your questions about AI, career, UofT, and more 
+
+
+AVP Engineering - Roles & Responsibilities
+
+This table defines what an excellent AVP Engineering will look like.
+
+
+
+
+Thank you for your interest in UTMIST! About UTMIST - The largest ML student society at UofT - The only design team in the field of ML - Career-oriented, with past members working at Intel, Amazon, Qualcomm, Borealis AI (RBC), Huawei, Google, Uber - 2000+ community members with 150+ developers & executives every year  To join the Club: Current Opportunities - The Mentorship Program: Industry Track & Research Track with paired mentorship, for fresh beginners to break into ML & AI  - LLM Acceleration Program: Learn LLM and AI safety in 4 workshops plus a project  - ML Projects: Apply as a ML Developer to join your preferred project team(s) and produce results in a 6-month development cycle (Including a LLM Competition Team)  - deMISTify Journal: Apply as a Technical Writer to produce monthly ML articles  - Academics: Apply as an Academic Director to prepare and lead technical workshops  - Non-technical positions: Join Industry & University Relations, Logistics (Events), Marketing, and Internal (Finance) teams  Interested? Register or apply via this QR code!  Thank you for your interest in UTMIST! About UTMIST - The largest ML student society at UofT - The only design team in the field of ML - Career-oriented, with past members working at Intel, Amazon, Qualcomm, Borealis AI (RBC), Huawei, Google, Uber - 2000+ community members with 150+ developers & executives every year  To join the Club: Current Opportunities - The Mentorship Program: Industry Track & Research Track with paired mentorship, for fresh beginners to break into ML & AI  - LLM Acceleration Program: Learn LLM and AI safety in 4 workshops plus a project  - ML Projects: Apply as a ML Developer to join your preferred project team(s) and produce results in a 6-month development cycle (Including a LLM Competition Team)  - deMISTify Journal: Apply as a Technical Writer to produce monthly ML articles  - Academics: Apply as an Academic Director to prepare and lead technical workshops  - Non-technical positions: Join Industry & University Relations, Logistics (Events), Marketing, and Internal (Finance) teams  Interested? Register or apply via this QR code!  Thank you for your interest in UTMIST! About UTMIST - The largest ML student society at UofT - The only design team in the field of ML - Career-oriented, with past members working at Intel, Amazon, Qualcomm, Borealis AI (RBC), Huawei, Google, Uber - 2000+ community members with 150+ developers & executives every year  To join the Club: Current Opportunities - The Mentorship Program: Industry Track & Research Track with paired mentorship, for fresh beginners to break into ML & AI  - LLM Acceleration Program: Learn LLM and AI safety in 4 workshops plus a project  - ML Projects: Apply as a ML Developer to join your preferred project team(s) and produce results in a 6-month development cycle (Including a LLM Competition Team)  - deMISTify Journal: Apply as a Technical Writer to produce monthly ML articles  - Academics: Apply as an Academic Director to prepare and lead technical workshops  - Non-technical positions: Join Industry & University Relations, Logistics (Events), Marketing, and Internal (Finance) teams  Interested? Register or apply via this QR code!  
+Upcoming Event: EigenAI Conference (Fewer than 80 general admission tickets left!) Who: Joint event with CSSU and Qualcomm Target Audiences: ML enthusiasts at all levels When: Saturday, September 16, 9 AM – 5 PM Where: Bahen Centre (BA1160 & BA1130)  At EigenAI, you’ll be exposed to: - Networking booths with Qualcomm, Vector Institute, Jarvis Consulting Group - Faculty keynotes, covering robotics, neural rendering, remote sensing, etc. - Workshops, such as “How to ML”, “How to not be replaced by AI”, Building AI startups - Project Fair to learn about the ML models, results, and impact of UTMIST past projects - Overview of the 2023-24 cycle’s projects - Roundtable for past execs to share how UTMIST has empowered their early career - Free lunch and catering will be provided  Register for EigenAI now via previous Linktree!  Follow UTMIST on Instagram: @uoft_utmist Follow UTMIST on LinkedIn: Search UTMIST  Subscribe our Newsletters below to receive key event updates and monthly technical articles               (Left: Newsletters; Right: Discord)  Join our Discord Server – A community to share your questions about AI, career, UofT, and more Upcoming Event: EigenAI Conference (Fewer than 80 general admission tickets left!) Who: Joint event with CSSU and Qualcomm Target Audiences: ML enthusiasts at all levels When: Saturday, September 16, 9 AM – 5 PM Where: Bahen Centre (BA1160 & BA1130)  At EigenAI, you’ll be exposed to: - Networking booths with Qualcomm, Vector, Jarvis Consulting Group, etc. - Faculty keynotes, covering robotics, neural rendering, remote sensing, etc. - Workshops, such as “How to ML”, “How to not be replaced by AI”, Building AI startups - Project Fair to learn about the ML models, results, and impact of UTMIST past projects - Overview of the 2023-24 cycle’s projects - Roundtable for past execs to share how UTMIST has empowered their early career - Free lunch and catering will be provided  Register for EigenAI now via previous Linktree!  Follow UTMIST on Instagram: @uoft_utmist Follow UTMIST on LinkedIn: Search UTMIST  Subscribe our Newsletters below to receive key event updates and monthly technical articles               (Left: Newsletters; Right: Discord)  Join our Discord Server – A community to share your questions about AI, career, UofT, and more Upcoming Event: EigenAI Conference (Fewer than 80 general admission tickets left!) Who: Joint event with CSSU and Qualcomm Target Audiences: ML enthusiasts at all levels When: Saturday, September 16, 9 AM – 5 PM Where: Bahen Centre (BA1160 & BA1130)  At EigenAI, you’ll be exposed to: - Networking booths with Qualcomm, Vector, Jarvis Consulting Group, etc. - Faculty keynotes, covering robotics, neural rendering, remote sensing, etc. - Workshops, such as “How to ML”, “How to not be replaced by AI”, Building AI startups - Project Fair to learn about the ML models, results, and impact of UTMIST past projects - Overview of the 2023-24 cycle’s projects - Roundtable for past execs to share how UTMIST has empowered their early career - Free lunch and catering will be provided  Register for EigenAI now via previous Linktree!  Follow UTMIST on Instagram: @uoft_utmist Follow UTMIST on LinkedIn: Search UTMIST  Subscribe our Newsletters below to receive key event updates and monthly technical articles               (Left: Newsletters; Right: Discord)  Join our Discord Server – A community to share your questions about AI, career, UofT, and more 
+
+
+UTMIST Marketing Team UpskillingRichard Shuai(Co-President, ex-VP Marketing, UTMIST;ex-Marketing Intern, Restaurant Brands International)October, 2023A Brief on the Strategy Elements of Digital MarketingAgenda●Overview: Purpose & Marketer Skillsets ●9-Step Marketing Campaign Management●Develop Your Strategic Mind: Corporate Example●DevelopYourStrategic Mind: Student Club Example●Questions & Discussions
+OverviewPurpose•Prepare YOU to become the next cohort of student club leaders by upskilling you on all aspects of marketing (I.e., you’re confident to plan & product campaigns and deliver results at any other student clubs as a leader)•Prepare for an ultimate high-impact project of this academic year at UTMIST Marketing: Marketing PlaybookThree Pillars of Skillsets as a MarketerBrand & Strategy PillarCommunication PillarOrganizational Pillar + Bonus Points•Planning and goal-setting•Brand growth strategy•Competitive landscape analysis•Data analysis & consumer insights•Channels, distributions, and sales•Product vision•Budget, revenue, and more…•Content planning•Digital content creation•Graphic design•Communications•Social media operations•Advertising, SEO•Newsletters, CRM, and more…•Organizational structure design•Recruit, onboard, and develop a marketing team•Dynamics with other executives•Bonus points: Skills in finance, technology, sales, pricing, product, and more capabilities…9-Step Marketing Campaign ManagementPlanning•(1)Strategizeyourgoals, find channels, and set yourbudget•(2) Define and categorize segments of your target audience•(3) Develop your message (sellingpoints, highlights, catered to different segments)Preparing•(4) Ideate a campaign plan and align with the team•(5)Produce graphics based on the campaign plan and requirements•(6) Review graphics, share feedback,makeedits, and finalize ready-to-go graphicsExecuting•(7) Launch the campaign on multiple channels and tailor it to each channel•(8) Engage the target audience and monitor theresults consistently•(9) Reflect on marketing results, goals, gaps, and key learnings Develop Your Strategic Mind: Corporate ExampleBrand/Category MarketingWe’ve recently seen a 10% increase of sales on a Food & Beverage category at the Company. How are you going to evaluate the leading causes of this increase, and what information do you need?●Frameworks we may use for this scenario ○(1) Issue Tree & Root Causes Analysis (RCA) –External + Internal■External: Seasonality (demand), competition, consumers’ behavioural changes, environment, and more…■Internal: Product cannibalization, marketing (CRM,Media, Digital), pricing, PMIX (premium product, limited-time offer), loyalty program, and more…○(2) The 4Ps or 3Cs of MarketingThe 4Ps of MarketingProductPricePlacePromotionThe 3Cs of Brand DevelopmentCustomersCompanyCompetitors●Now, let’s transfer from corporate (consumer brands) to student clubs (UTMIST)!Develop Your Strategic Mind: Student Club ExampleUTMIST Growth Marketing Hypothetical CaseLet’s imagine: UTMIST “was” one of the largest Machine Learning and AI-focused student societies at UofT. Its event registration number was declining over three years, despite changing the leadership team every year. In particular, the event attendance rate was lower than 40%, and the number of posts produced each year decreased by 200%. The club also had a difficulty finding talents for operations, strategy, and management. The President of the club reached out to you to be a consultant to help unlock its potential, transform, and grow. ●Let’s solve this together!●Frameworks we may use for this case○Issue Tree & RCA ○The 4Ps or 3Cs of Marketing○Theories you may learn from JRE410, 420 (Engineering) or the Business Fundamentals Certificate (Arts & Science)The 4Ps of MarketingProductPricePlacePromotionThe 3Cs of Brand DevelopmentCustomersCompanyCompetitors
+
+Unsupported file type: Copy of UTMIST O-Chart.png
+
+
+UTMIST Digital Media Operations Standard Operating Procedures (SOPs)
+
+LinkedIn
+Posting: The post shouldn’t be exactly the same as what we post on Instagram, due to the professional and interactive nature of LinkedIn
+We need to confirm the number of pages/images and they are in the desired order (note: never post two pages on LinkedIn; one or 3-5 pages work well)
+To ensure that our audiences can easily find the right location, we should always insert a link or multiple links (e.g., form, website, other media sites, Medium) if relevant
+We should tag (@) our members by searching their names (if applicable)
+If there are organizations in our post, we should also tag (@) their names (e.g., University of Toronto), particularly those that UTMIST collaborates with (e.g., Jarvis Consulting Group, Qualcomm, etc.) and those that are part of UofT (e.g., Department of Computer Science, Faculty of Arts & Science) (note: this is especially important when we introduce a speaker, an executive, or an alumni)
+We shouldn’t overuse emoji on LinkedIn, although it’s popular on Instagram
+We should insert tags (#) based on the topic(s) of the post (e.g., hiring, events, recruitment, conference, join us, keynote, speaker, AI, ML, AI community, etc.) 
+
+https://utmist.gitlab.io/
+
+
+
+Timestamp First and Last name (e.g. John Doe) Position at UTMIST Upload a headshotOne-liner of you:
+("one-liner" can be your program and year of study and a past or current research or professional position, e.g., Full Name, Fourth year EngSci – Robotics, ex-Amazon SDE Intern & Research Assistant at the IAI Lab).(For technical VPs & AVPs)  Please provide a few technical fields that you’re interested in (e.g., LLMs, computer vision). 
+If not applicable input: NA(VP-only)  One-liner of your department i.e. The vision and mission of the department 
+Example:  The Department of Marketing develops cross-channel campaigns to advance the brand reputation, talent profile, and endeavors of UTMIST at the University of Toronto community and beyond. 
+If not applicable input: NA @dropdown
+8/29/2023 19:39:32 Sarah Walker AVP Engineering https://drive.google.com/open?id=1s7LdRszkMBDJGH2tkTsEzLAr0dQpKA4- Sarah Walker, 3rd year CS Spec, former student researcher with T-CAIREM AI in Medicine program natural language understanding, intelligent/optical character recognition NA
+8/29/2023 21:34:18 Sirui (Ariel) Chen AVP Academics https://drive.google.com/open?id=1zzbojBXPLGd3-8GE7I5MnVgoN5OjB7A2 Fourth year CS, Research Student at RVL Lab & DGP lab computer vision, machine learning NA
+8/29/2023 22:07:24 Ziwen Han VP Academics https://drive.google.com/open?id=18Y_LD_29ARS2aC6MoiXcZ2n8jpIrRCkb 4th year CS + PEY, ex-ML R&D @ Qualcomm LLMs The mission of the academic department is to build passionate researchers of the future.
+8/29/2023 22:37:13 William Wu AVP Engineering https://drive.google.com/open?id=1asKG7niaT2Sh0DN54qxVDl7ntYZYc-Y8 William Wu (Leyi Wu), Second year CS - AI + Stats + Philosophy, ex-Amazon SDE Intern & Research Assistant at UofT DoSS Deep Learning, Alignment, LLMs NA
+8/30/2023 12:44:39 Richard Shuai Co-President https://drive.google.com/open?id=1PulyEsHI7EPBO_KGWh-dygec4J7rEDNo Richard Shuai, 4th Year Psychology, Incoming Analyst & ex-Category Marketing Intern at Restaurant Brands International, Consultant at IBM Consulting Pro-Bono Initiative NA NA
+9/1/2023 13:50:31 Dev Shah AVP Engineering https://drive.google.com/open?id=1TWhQpTuYW5U4UIT8tI3uDxnQRrVOhdJz Dev Shah, 2nd year Computer Science - Undergraduate researcher @ RVL lab, ML researcher under Prof. Pascal Tyrrell, ex - Research intern @ Interac, ML Engineer @ Interactions LLMs, Computer Vision, RL, NLP n/a
+9/1/2023 15:31:45 Mishaal Kandapath VP Technical Writing https://drive.google.com/open?id=1TDxvd4SO53RBIjx8su7yHig1mXO5DrfH Mishaal Kandapath (3rd Year CS & CogSci) - Robotics, Languages & Gestures Embodied AI, Semantic Grounding, Causal Learning The Technical Writing Department builds engagement in the UTMIST community through technical writings on the state of the art advances in ML. Our pieces reflect the wide variety of ML interests and experiences representative of UTMIST. 
+9/1/2023 16:20:40 Sola Long VP Industry Relations https://drive.google.com/open?id=1kBf8iRVR1eFrLdOzRZLe-J17u4oi_0k9 Sola Long, Third year Physics and Stats. NA The Industry Relations department aims to establish enduring partnerships with cutting-edge corporations in ML, AI, and technology sectors, facilitating a vital connection between UTMIST and these industries to drive innovation and create valuable networking opportunities for our students.
+9/1/2023 18:00:59 Edith Fang AVP Engineering https://drive.google.com/open?id=1XaAQn2McGEaglH6OnvPnL48gPm5eizgH Edith Fang - EngSci 2T6 + PEY & Undergraduate researcher at Yale University School of Medicine BME, Optimal control, Neural Network, LLM NA
+9/2/2023 10:28:32 Matthew Tamura AVP Engineering https://drive.google.com/open?id=1s3H9FKuKMQ74rkdVghFwYJRkhU526R8a Matthew Tamura, Third year EngSci - Machine Intelligence, Philosophy Minor, IT Analyst at Mount Sinai Hospital Natural Language Processing, AI applications in healthcare, Ethical AI development NA
+9/2/2023 10:33:12 Amsal Gilani AVP Engineering https://drive.google.com/open?id=1bIJ9XryvkQ1x0O4-Ke5ETVKkFnOsYD8n Amsal Gilani, Second year EngSci, Undergraduate ML Researcher at Trillium Health Partners (AI Deployment & Evaluation Lab), ex-NUS ML Research Intern Deep Learning, NLP NA
+9/3/2023 14:12:53 Manjima Banerjee VP Internal Affairs https://drive.google.com/open?id=1dvMyLRPBxFNTMM5BmOr-DDc0O56lgnWc Manjima Banerjee, Fourth Year Economics and Statistics Double Major, ex- Ernst & Young Strategy Intern NA The Department of Internal Affairs ensures sound financial management, transparency, and optimal resource allocation, enabling UTMIST to thrive and fulfil its objectives with fiscal responsibility and sustainability.
+9/3/2023 20:10:08 Gabriel Wu AVP Academics https://drive.google.com/open?id=1IlF7FFz9QDrvy3aDpQOEKrH8NswxUe8M Second year EngSci, research intern at ChemSpace Lab Machine learning for natural science NA
+9/4/2023 11:54:28 Sina Zamiri VP Logistics https://drive.google.com/open?id=1A424Ks87eg3h94hltOufcEtxqcRYumsU 4th Year Cell and Molecular Biology Specialist NA The Logistics Department provides event planning and coordination to ensure the cost-effective and efficient execution of all UTMIST events.
+9/10/2023 12:46:11 Andrew Magnuson VP Engineering https://drive.google.com/open?id=1HKqdPlIrIA76oG_e-BSbsWofqsTZmhuN Third year EngSci - Machine Intelligence, Schulich Leader, Research Assistant at RVL Medical AI, RL, Robotics, Optimization The Engineering Department at UTMIST manages self-directed AI projects, fostering a collaborative space for 50-70 developers and directors to innovate, grow, and spotlight their achievements within the University of Toronto community and at partner events.
+9/17/2023 21:13:44 Yunran(Adalyn) Yang Marketing director https://drive.google.com/open?id=1tCn0FBRVUD7xAnUuzVWUdzRK2ko6dfbC First Year EngSci NA NA
+9/17/2023 21:16:47 Erin Li Marketing Director https://drive.google.com/open?id=1_Wk1Oy5P-NzFibK0y07VaNLAqCa1lc_0 2nd Year Economics NA NA
+9/17/2023 22:13:37 Lucie Yang Marketing Director https://drive.google.com/open?id=13Qz7gNVjSt4O-wSmCssfbSVMlv1V3BJQ 2nd Year Data Sci, Research Student @ MiDATA Lab machine learning for healthcare, computer vision NA
+9/18/2023 18:05:31 Calum Murray VP Infrastructure https://drive.google.com/open?id=1ipWzsqptUBBHbSYn6GxbZBXNn59kT2KI EngSci ECE, SWE @ Red Hat Algorithms, Control Theory, Distributed Systems, Cloud Computing, Open Source The Infrastructure Department aims to support the infrastructure of UTMIST, as well as contribute to the open source infrastructure of AI/ML.
+9/19/2023 8:25:30 Nimit Bhanshali Co-President https://drive.google.com/open?id=1rlpkZm_XE4fympA3ja_PymZz83JWlpvY Nimit Bhanshali, 4th Year CS Specialist - Focus in AI, ex-TD intern NA NA
+10/7/2023 20:57:54 Michael Mo AVP Academics https://drive.google.com/open?id=1R_pgDtbweKH1qSHk9zZve7w87Y3e5bfl 2nd-year Engsci, intend to go into Machine Intelligence Major, but somewhat interested in hardware as well. Transformers, Reinforcement Lerning, Software Development NA
+
+Team Structure
+(x1) Marketing Director – Digital Media Operations
+(x2) Marketing Director – Graphic Design
+(x4) Graphic Designer
+(x1) Marketing Associate – Strategic Projects (*No need to specify this)
+(x2) Photographer
+
+Marketing Directors
+What will Marketing Directors (Digital Media Operations) do? Responsibilities
+Being accountable for the operations and maintenance of all UTMIST virtual marketing channels, including Instagram, LinkedIn, Facebook, newsletters, and Discord.
+Acting as a strategic partner to the Marketing Directors (Graphic Design), providing timely feedback to the content, and advising new marketing topics and directions.
+Connecting with other departments and club’s executives to build a marketing calendar.
+
+What are we looking for? Requirements
+Basic computer skills, such as Microsoft Office, Google Drive, OneDrive, and Discord.
+Hands-on experience managing more than two of these following media sites, such as Facebook, Twitter, LinkedIn, Discord, Instagram, YouTube, and WeChat is required.
+Prior experience in social media as an associate at a large student club or campus part-time position is required.
+Professional experience in brand management, marketing, or social media is preferred.
+Leadership, time management, multitasking, communication, and teamwork skills will be highly valued.
+
+Marketing Directors
+What will Marketing Directors (Graphic Design) do? Responsibilities
+Leading 1-2 designers or associates directly and being responsible for the production of 2-6 high-quality digital marketing content per week (e.g., posters or graphics).
+Developing a solid content strategy to ensure the success of marketing campaigns.
+Supporting the Digital Media Director and the VP to run promotions on Instagram, LinkedIn, Facebook, newsletters, and Discord.
+Incorporating UTMIST’s brand guidelines, EDI (Equity, Diversity, & Inclusion) principles, design strategies, and feedback from the team into graphics.
+Contributing to the development of graphic design assets/templates that can be reused and sustainable.
+
+What are we looking for? Requirements
+Basic computer skills, such as Microsoft Office, Google Drive, OneDrive, and Discord.
+Familiarity with basic digital graphic design tools (e.g. Canva, Photoshop, Illustrator, etc.)
+A portfolio of design projects is required.
+Prior experience in social media as an associate at a large student club or campus part-time position is required; experience leading graphic designers is an asset.
+Professional experience in brand management, marketing, or social media is preferred.
+Leadership, time management, multitasking, communication, and teamwork skills will be highly valued.
+
+Graphic Designers
+What will Graphic Designers do? Responsibilities
+Creating 1-3 high-quality digital marketing content per week (e.g., posters or graphics) to align with the content strategy and support the Digital Media Director and the VP to run promotions on Instagram, LinkedIn, Facebook, newsletters, and Discord.
+Incorporating UTMIST’s brand guidelines, EDI (Equity, Diversity, & Inclusion) principles, design strategies, and feedback from the team into graphics.
+Contributing to the development of graphic design assets/templates that can be reused and sustainable.
+
+What are we looking for? Requirements
+Basic computer skills, such as Microsoft Office, Google Drive, OneDrive, and Discord.
+Familiarity with basic digital graphic design tools (e.g. Canva, Photoshop, Illustrator, etc.)
+Skills and experience with website design (front-end development) will be an advantage.
+Familiarity with more than one digital/social media site, such as Facebook, Twitter, LinkedIn, Discord, Instagram, YouTube, WeChat, Github, etc.
+Prior experience in marketing or branding as an associate at a large student club or campus part-time position is an asset.
+Professional experience in brand management, marketing, or social media is preferred. 
+Leadership, time management, multitasking, communication, and teamwork skills will be highly valued.
+
+
+Student Inquiry Manual
+Reminder: Remind students with Discord Server!
+“Chatgpt-ran” Possible Questions 
+About UTMIST
+What is UTMIST?
+UTMIST stands for the University of Toronto Machine Intelligence Student Team. We are a student organization at the University of Toronto dedicated to all things related to machine intelligence.
+What does UTMIST stand for?
+University of Toronto Machine Intelligence Student Team.
+When was UTMIST founded?
+UTMIST was founded in 2017
+How can I join UTMIST?
+We recruit twice once a year or by position needed. Please stay tuned on our social media account, our website and Discord.
+How many members are there in UTMIST?
+As of our latest count, UTMIST has # students. However, our membership is constantly growing, and we welcome new members.
+What is the mission and purpose of UTMIST?
+We aim to provide a platform for students to explore and engage with machine intelligence, fostering collaboration, learning, and innovation.
+Membership and Participation
+Who can join UTMIST?
+UTMIST is open to any and all University of Toronto students who have an interest in machine intelligence, regardless of their major or background. Certain positions may require a certain technical background or affiliation with the University of Toronto. This will be communicated in our recruitment postings and will be evaluated via our recruitment process which includes, but not limited to, application form, interview, technical assessment, etc.
+What are the benefits of joining UTMIST?
+Joining UTMIST offers numerous benefits, including access to [workshops, networking opportunities, skills development and projects]. It's a great way to enhance your knowledge and connect with like-minded individuals.
+Can non-University of Toronto students join?
+?
+Can you provide more details about collaborations with research institutes and companies?
+Ask the IR department.
+Club Communication
+How can I stay updated with UTMIST events and news?
+Join our discord channel [Hyperlink].
+Do you have a newsletter or mailing list?
+Yes, we have a newsletter that you can subscribe to for regular updates on our events, workshops, and opportunities. You can sign up for it on our website. [https://utmist.gitlab.io/newsletter/]
+What social media platforms do you use?
+We are active on Discord, Instagram and LinkedIn. You can follow us there for updates and announcements.
+Is there a UTMIST website I can visit for more information?
+Yes, you can visit our official website at https://utmist.gitlab.io/newsletter/ for detailed information about our club, upcoming events, and resources.
+Can I contact someone directly with questions or inquiries?
+For specific inquiries (expand), you can reach out to our email utorontomist@gmail.com[email address(es)]. We are here to help and answer your questions.
+Volunteering and Leadership Opportunities
+How can I get involved in organizing UTMIST events?
+If you're interested in volunteering or taking on leadership roles in event organizations, please stay tuned on our social media platform and Discord for recruiting information.
+Are there leadership positions available?
+If you're interested in taking on leadership positions, please stay tuned on our social media platform, website and Discord for recruiting information.
+Can I propose and lead my own machine-learning project or initiative?
+Yes. At the start of each year, we open up applications for Project Directors. Here students will have the opportunity to submit a project proposal for a project that will follow at least a 6-8 month development cycle. If accepted, UTMIST will support your project by providing you assistance in recruitment, project management, technical development, and more. Ask Academic department
+We encourage members to propose and lead their own machine-learning projects or initiatives within the club. You can pitch your ideas to the executive team for support and collaboration.
+General Inquiries
+Can you recommend resources for learning more about machine intelligence?
+Ask Academic department
+What are the prerequisites for participating in UTMIST events?
+No prerequisites, just passion for machine learning. Certain events maybe catered towards a more specific audience, in such cases, we will announce this and include it in our event descriptions.Ask Academic department
+Is UTMIST only for computer science students, or can students from other majors join?
+UTMIST is open to students from all majors and backgrounds. Machine intelligence is an interdisciplinary field, and we value diversity in our membership.
+Membership Benefits
+Are there any academic or career benefits to being a UTMIST member?
+Ask Academic department
+Do members have access to exclusive resources or opportunities?
+Ask Academic department
+How can being a member of UTMIST help my machine-learning journey?
+General answer: UTMIST is open to students from all majors and backgrounds. Machine intelligence is an interdisciplinary field, and we value diversity in our membership.
+Specific/better answer: Ask Academic department
+Questions that appeared before
+From other student clubs
+Ask for repost stories 
+Ask for collab
+Template for story reposting request
+From students
+Application questions 
+Missed/Passed the deadline for the application
+Marketing directors usually need to confirm with Academics department 
+Specific questions appeared before: 
+EngSci schedules conflict with the MML acceleration program, and none of the Engsci students enrolled in this program were actually able to attend the program. How do we address such conflict?
+Want to join the club and demand further information (Depends on individual’s interest) 
+Info in bio but can also be provided by marketing directors
+The marketing director can help students check their bio or provide information if needed
+Do I need prior experience in ML to become an ML developer in the club? I want to join the project, but they don’t seem first-year friendly. (we need clarification)
+Ask for space of availability of events/programs
+Marketing directors usually need to confirm with Academics department 
+Ask for the link of the application
+Refer them to our bio
+Ask for application results
+What is the difference between UTMIST and UofT AI
+U of T MIST and U of T AI are both prominent machine intelligence clubs at the University of Toronto. While U of T AI focuses on the Department of Computer Science, UTMIST, established in 2017 under the Faculty of Applied Science & Engineering, operates cross-faculty.
+One key distinction is that UTMIST has dedicated design teams within the Engineering Department, leading research and development initiatives. We produce our academic content independently, fostering a unique learning environment. Unlike general memberships, we emphasize internal involvement. You can also check out our LinkedIn profiles of our members’ showcase of their achievements and contributions within UTMIST.
+We encourage collaboration and often partner with U of T AI for various events. Interested individuals are welcome to apply to both clubs and attend events based on their preferences.
+For more information or specific inquiries, feel free to reach out to our executives in our discord server.
+
+Other/Special questions
+Remaining ticket for events
+Accessibility
+
+
