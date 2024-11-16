@@ -35,14 +35,13 @@ def read_files(directory):
                 documents.append(Document(text=content))
     return documents
 
-qdrant_key = 'Your Key'
-
 from qdrant_client import QdrantClient
 
 qdrant_client = QdrantClient(
-    url="https://e66659b9-20a8-4ef9-bcdc-9f978f890043.us-east4-0.gcp.cloud.qdrant.io:6333", 
-    api_key=qdrant_key,
+    url="https://5f8102de-7129-4a0a-8bb2-166dd7c92682.us-east4-0.gcp.cloud.qdrant.io:6333", 
+    api_key="TDT673LkRUY2e-CfBa4H1m9U8pufQjk3h_BCoXbpfIp6KfcjS1XRog",
 )
+
 vector_store = QdrantVectorStore(client=qdrant_client, collection_name = "test") 
 
 pipeline = IngestionPipeline(
