@@ -60,9 +60,7 @@ def update_chat_history(role, message):
     chat_history.append({"role":role, "content": message})
 
 def embed_chat_history(chat_history):
-    conversations = [Document(text=message['content']) for message in chat_history]
-    index = VectorStoreIndex.from_documents(conversations, embedding_model = embedding_model)
-    index.storage_context.persist()
+    pass
 
 qa_prompt = PromptTemplate(
     "Context information is below.\n"
@@ -75,7 +73,8 @@ qa_prompt = PromptTemplate(
     "Perplexity measures the complexity of text. Separately, burstiness compares the variations of sentences. "
     "Humans tend to write with greater burstiness, for example, with some longer or complex sentences alongside shorter ones. "
     "AI sentences tend to be more uniform. Therefore, when writing the following contents I am going to ask you to create, "
-    "I need it to have a good amount of perplexity and burstiness. You answer should never exceed 40 words.\n"
+    "I need it to have a good amount of perplexity and burstiness. "
+    "{length_instructions}\n"
     "Query: {query_str}\n"
     "Answer: "
 )
@@ -104,29 +103,85 @@ class RAGStringQueryEngine(CustomQueryEngine):
         # Combine past and current contexts
         combined_context = f'{past_context_str}\n\n{context_str}'
 
-
-        response = self.llm.complete(
-            qa_prompt.format(context_str=combined_context, query_str=query_str)
+        # Use self.qa_prompt here
+        prompt_text = self.qa_prompt.format(
+            context_str=combined_context,
+            query_str=query_str
         )
+
+        response = self.llm.complete(prompt_text)
 
         return str(response)
 
 
+def determine_response_length(query: str) -> str:
+    """
+    Determines whether the user's query is general or specific.
 
-llm = OpenAI(model="gpt-3.5-turbo")
+    :param query: The user's query string.
+    :return: "general" or "specific"
+    """
+    CLASSIFICATION_PROMPT = """
+You are an assistant that classifies user queries into "general" or "specific" for a chatbot that answers questions regarding a club, UTMIST.
+
+- A "general" query asks for broad information or an overview of the club.
+- A "specific" query asks for detailed information about a particular topic or they ask you to elaborate on a specific topic.
+
+Given the following query, classify it accordingly.
+
+Query: "{query}"
+
+Classification (general/specific):
+"""
+
+    prompt = CLASSIFICATION_PROMPT.format(query=query)
+    response = get_openai_response_content(
+        messages=[{"role": "user", "content": prompt}]
+    )
+
+    classification = response.strip().lower()
+    if "specific" in classification:
+        return "specific"
+    elif "general" in classification:
+        return "general"
+    else:
+        # Default to "general" if the classification is unclear
+        return "general"
+
+
+llm = OpenAI(model="gpt-3.5-turbo", max_tokens = 500)
 synthesizer = get_response_synthesizer(response_mode="compact")
 
 #aiResponse combiend with past_chat_history
 def aiResponse(input, past_chat_history=[]):
+    # Determine the response length classification
+    response_length = determine_response_length(input)
+
+    # Set length instructions based on the classification
+    print(response_length)
+    if response_length == "general":
+        length_instructions = "Please provide a concise answer, not exceeding 50 words."
+    else:  # "specific"
+        length_instructions = "Please provide a detailed answer, still not exceeding 200 words."
+
+    # Format the QA prompt with the length instructions
+    qa_prompt_formatted = qa_prompt.format(
+        length_instructions=length_instructions,
+        context_str="{context_str}",
+        query_str="{query_str}"
+    )
+    qa_prompt_local = PromptTemplate(qa_prompt_formatted)
+
     query_engine = RAGStringQueryEngine(
         retriever=retriever,
         response_synthesizer=synthesizer,
         llm=llm,
-        qa_prompt=qa_prompt,
+        qa_prompt=qa_prompt_local,
     )
-    
+
     response = query_engine.custom_query(str(input), past_chat_history)
     return response
+
 
 class Relevance(Enum):
     KNOWN = "known"
