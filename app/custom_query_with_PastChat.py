@@ -200,7 +200,11 @@ def get_classification_results(input_text, userID):
         intent_res = classify_intent(sentence)
         constraint_res = classify_constraints(sentence, intent_res)
         result_str = f"Sentence: {sentence}\nIntents: {intent_res}\nConstraints: {constraint_res}"
-        m.add(messages=sentence, user_id=userID, metadata={"intents": intent_res, "constraints": constraint_res})
+        
+        # Only add this sentence if it is not a question/inquiry.
+        if ("Inquire_Resources" not in intent_res) and ("Club_Related_Inquiry" not in intent_res) and ("Short_Answer_Inquiry" not in intent_res):
+            m.add(messages=sentence, user_id=userID, metadata={"intents": intent_res, "constraints": constraint_res})
+
         # results_list.append(result_str)
         combined_results_lines.append(result_str)
     
