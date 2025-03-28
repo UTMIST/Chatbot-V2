@@ -6,3 +6,4 @@ qdrant-client
 llama-index-vector-stores-qdrant
 instaloader
 google-api-python-client
+anthropic
