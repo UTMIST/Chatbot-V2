@@ -1,7 +1,8 @@
 .venv/
-.env
-# Ignore compiled Python files
-*.pyc
+*.env
+utmist-chatbot-env/
 # Ignore Python cache directories
 __pycache__/
-
+*.pyc
+# Ignore .pth files
+*.pth

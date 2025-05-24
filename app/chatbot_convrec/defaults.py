@@ -5,19 +5,26 @@ from llama_index.vector_stores.qdrant import QdrantVectorStore
 from app.retrieval.query_transformers import LLMQueryTransformer
 from jinja2 import Template
 from app.retrieval.retriever import VectorStoreRetriever
-
-
+from llama_index.core import (
+    VectorStoreIndex,
+    SimpleDirectoryReader,
+    load_index_from_storage,
+    StorageContext,
+)
+from llama_index.core.vector_stores.simple import SimpleVectorStore
 from dotenv import load_dotenv
 import os
 
 
 load_dotenv()
 
-VEC_STORE = QdrantVectorStore(
-    client=QdrantClient(url=os.environ.get("QDRANT_URL"),
-                        api_key=os.environ.get("QDRANT_API_KEY")),
-    collection_name="test_collection_1",
-)
+# VEC_STORE = QdrantVectorStore(
+#     client=QdrantClient(url=os.environ.get("QDRANT_URL"),
+#                         api_key=os.environ.get("QDRANT_API_KEY")),
+#     collection_name="test_collection_1",
+# )
+VEC_STORE = SimpleVectorStore.from_persist_path("storage/vector_store.json")
+
 LLM = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 DATA_SOURCE_FOLDER = "/app/data/input"
 DATA_SOURCE_FINISHED_FOLDER = "/app/data/finished"

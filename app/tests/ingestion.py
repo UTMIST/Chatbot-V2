@@ -6,11 +6,15 @@ import os
 from dotenv import load_dotenv
 from llama_index.core.vector_stores.simple import SimpleVectorStore
 from llama_index.llms.openai import OpenAI
+from pathlib import Path
 
+env_path = Path(__file__).parents[2] / ".env"
+load_dotenv(dotenv_path=env_path, override=True)
 
+# now os.environ["OPENAI_API_KEY"] will be set
 
-DATA_SOURCE_FOLDER = "app/data/input"
-DATA_SOURCE_FINISHED_FOLDER = "app/data/finished"
+DATA_SOURCE_FOLDER = r"C:\Users\User\Desktop\chatbot\ChatbotV2\app\tests\data\source"
+DATA_SOURCE_FINISHED_FOLDER = r"C:\Users\User\Desktop\chatbot\ChatbotV2\app\tests\data\finished"
 
 VEC_STORE = SimpleVectorStore()
 

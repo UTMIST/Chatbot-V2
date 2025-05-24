@@ -18,7 +18,7 @@ from enum import Enum
 import torch
 import re
 import json
-
+from app.chatbot_convrec.retrieve_recommendation import retrieve_recommendation
 # Option 2: return a string (we use a raw LLM call for illustration)
 from llama_index.llms.openai import OpenAI
 from llama_index.core import PromptTemplate
@@ -64,8 +64,6 @@ chat_store = SimpleChatStore()
 
 # Store past chat history using mem0 memory layer
 m = Memory()
-
-
 
 # Function to get the memory module for a given user.
 def get_memory_module(userID: str):
@@ -219,7 +217,7 @@ def get_classification_results(input_text, userID):
     
     # return results_list, combined_results, intent_res
 
-    return combined_results, intent_res
+    return constraint_res, combined_results, intent_res
 
 def generate_missing_info_prompt(combined_results, query):
     """
@@ -250,11 +248,13 @@ def generate_missing_info_prompt(combined_results, query):
         print(f"Error in generate_missing_info_prompt: {e}")
         return "Could not determine missing information. Please provide any relevant details that might be missing."
 
-def Classify_Action(combined_results: str) -> str:
+def Classify_Action(combined_results: str, query_str: str) -> str:
     prompt = PromptTemplate(
         "Below are the combined classification results derived from the user's query:\n"
-        "{combined_results}\n\n"
-        "Based on these results, determine which of the following actions the bot should take:\n"
+        "{combined_results}\n"
+        "Below is the user query: "
+        "{query_str}\n\n"
+        "Based on these results and information above, determine which of the following actions the bot should take:\n"
         "1. Request More Information\n"
         "2. Generate Recommendation\n"
         "3. Answer a Question\n"
@@ -282,7 +282,7 @@ def Classify_Action(combined_results: str) -> str:
 # aiResponse combined with past chat history
 def aiResponse(input, userID):
     # For debugging: print all the memories for the current user.
-    print("Current memories: ", [memory["memory"] for memory in m.get_all(user_id=userID)["results"]])
+    # print("Current memories: ", [memory["memory"] for memory in m.get_all(user_id=userID)["results"]])
     
     # Optionally, clear the chat history for a new conversation.
     # Uncomment the next line if you want to clear previous history:
@@ -302,12 +302,12 @@ def aiResponse(input, userID):
 
     # Get classification results for the current user input.
     # results_list, combined_results, intent_res = get_classification_results(input, userID)
-    combined_results, intent_res = get_classification_results(input, userID)    
+    constraints_res, combined_results, intent_res = get_classification_results(input, userID)    
 
     # Optionally, you can combine past temporary results if desired:
     # results_list.extend(past_results)
 
-    classified_action = Classify_Action(combined_results)
+    classified_action = Classify_Action(combined_results, input)
     print(combined_results)
     print("Classified Action:", classified_action)
 
@@ -349,22 +349,18 @@ def aiResponse(input, userID):
                 "Keep your response simple and limited to 100 words."
             )
     elif classified_action == "Generate Recommendation":
+        recommendations = retrieve_recommendation(constraints_res, query_str)
         qa_prompt = PromptTemplate(
-            "Below are the combined classification results for a user's query:\n"
-             "{combined_results}\n\n"
-             "Below is the relevant context retrieved from the vector database:\n"
-             "{context_str}\n\n"
-             "The user's question is:\n"
-             "{query_str}\n\n"
-             "This is the user's Chat History:\n"
-             "{past_context}\n\n"
-            "Based on these classification results, generate a personalized recommendation. "
-            "Your recommendation should consider the user's identified intent (e.g., Provide Preference, Inquire Resources, etc.) "
-            "and any constraints such as education level, resource type, topic, language, budget, learning style, time commitment, "
-            "level of depth, preferred topics, and format preferences. "
-            "Please provide an actionable recommendation that is clear, concise, and tailored to the user's needs. "
-            "Limit your response to 100 words maximum."
+            "You are a recommendation chatbot that is to provide the user with the best resource recommendations.\n"
+            "Your task is the format the response given the information below such that you give the user the best recommendations according to their query.\n"
+            "Your answer should not exceed 100 words.\n"
+            "Below is the user query: \n"
+            "{query_str}\n"
+            "Below is the already generated set of classification results: \n"
+            "{recommendations} \n"
+            "Now format this information into a response to give to the user. Address the user as if you are talking to them directly."
         )
+
     elif classified_action == "Other/Quick Response":
         qa_prompt = PromptTemplate(
             "Below is the user input, respond in a short and concise manner.\n"
