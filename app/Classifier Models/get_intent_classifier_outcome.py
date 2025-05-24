@@ -2,11 +2,9 @@ import torch
 from transformers import RobertaTokenizer
 from Intent_Classifier import RobertaClassifier, LABELS, MAX_LENGTH, MODEL_SAVE_PATH
 
-def get_binary_outcome(input_text: str) -> dict:
-    """
-    Given an input text (string), load the saved model (using definitions from the training code),
-    process the text, and return a dictionary mapping each label to its binary outcome (0 or 1).
-    """
+def initialize_intent_classifier():
+    global model, tokenizer, device
+
     # Set device (use GPU if available)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -21,6 +19,12 @@ def get_binary_outcome(input_text: str) -> dict:
     model.load_state_dict(state_dict)
     model.eval()
 
+
+def get_binary_outcome(input_text: str) -> dict:
+    """
+    Given an input text (string), load the saved model (using definitions from the training code),
+    process the text, and return a dictionary mapping each label to its binary outcome (0 or 1).
+    """
     # Tokenize the input text
     inputs = tokenizer(
         input_text,
@@ -40,8 +44,10 @@ def get_binary_outcome(input_text: str) -> dict:
     preds = (torch.sigmoid(outputs) > 0.5).float().cpu().numpy()[0]
 
     # Create and return a dictionary mapping each label to its binary prediction
-    binary_outcome = {label: int(pred) for label, pred in zip(LABELS, preds)}
-    return binary_outcome
+    # binary_outcome = {label: int(pred) for label, pred in zip(LABELS, preds)}
+
+    res = [LABELS[i] for i in range(len(preds)) if preds[i]]
+    return res
 
 # Example usage:
 if __name__ == "__main__":

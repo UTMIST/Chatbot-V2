@@ -2,15 +2,9 @@ import torch
 from transformers import RobertaTokenizer
 from classifierconstraint import RobertaClassifier, NUM_CLASSES, MAX_LENGTH, MODEL_SAVE_PATH
 
-def get_constraint_prediction(input_text: str) -> dict:
-    """
-    Given an input text (string), this function loads the saved constraint classifier,
-    processes the text, and returns a dictionary with the predicted outcome.
+def initialize_constraint_classifier():
+    global model, tokenizer, device
 
-    The prediction is a single label:
-      0: soft constraint
-      1: hard constraint
-    """
     # Set device (GPU if available, else CPU)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -23,6 +17,16 @@ def get_constraint_prediction(input_text: str) -> dict:
     model.load_state_dict(state_dict)
     model.eval()
 
+
+def get_constraint_prediction(input_text: str) -> dict:
+    """
+    Given an input text (string), this function loads the saved constraint classifier,
+    processes the text, and returns a dictionary with the predicted outcome.
+
+    The prediction is a single label:
+      0: soft constraint
+      1: hard constraint
+    """
     # Tokenize the input text
     inputs = tokenizer(
         input_text,
@@ -44,7 +48,7 @@ def get_constraint_prediction(input_text: str) -> dict:
 
     # Optionally, map the numeric prediction to a human-readable format
     label_map = {1: 'soft', 2: 'hard'}
-    return {'predicted_constraint': label_map[pred_label]}
+    return [label_map[pred_label]]
 
 # Example usage:
 if __name__ == "__main__":

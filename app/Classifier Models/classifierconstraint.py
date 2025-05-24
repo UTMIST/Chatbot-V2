@@ -25,11 +25,18 @@ BATCH_SIZE = 16           # Batch size
 LEARNING_RATE = 2e-5      # Learning rate
 MAX_LENGTH = 128          # Maximum token length for RoBERTa
 NUM_CLASSES = 2           # Two classes: soft (0) and hard (1) constraint
+
 # File paths (change these to your local paths)
-LABELLED_FILE = r"app\data\Combined_Dataset_Constraint.csv"     # e.g., "./data/labelled.csv"
-UNLABELLED_FILE = r"app\data\Unlabelled_Constraint_Data.csv"           # e.g., "./data/unlabelled.csv"
+LABELLED_FILE = r"app\data\Combined_Dataset_Constraint.csv"         # e.g., "./data/labelled.csv"
+# LABELLED_FILE = "app/data/Combined_Dataset_Constraint.csv"          # for MacOS
+
+UNLABELLED_FILE = r"app\data\Unlabelled_Constraint_Data.csv"        # e.g., "./data/unlabelled.csv"
+# UNLABELLED_FILE = "app/data/Unlabelled_Constraint_Data.csv"         # for MacOS
+
 # Model save path
 MODEL_SAVE_PATH = r"app\Classifier Models\Constraints.pth"
+# MODEL_SAVE_PATH = "app/Classifier Models/Constraints.pth"           # for MacOS
+
 # Use Automatic Mixed Precision if using CUDA
 USE_AMP = True
 #############################################

@@ -1,7 +1,9 @@
 import discord
 from discord.ext import commands, tasks
 # Modified for rag
-from custom_query_with_PastChat import classifyRelevance, aiResponse, update_chat_history
+from custom_query_with_PastChat import aiResponse, m
+from get_constraint_classifier_outcome import initialize_constraint_classifier
+from get_intent_classifier_outcome import initialize_intent_classifier
 # from rag_handler import ai_response, save_unanswered_queries, update_vector_database  
 import os
 import os.path
@@ -24,6 +26,10 @@ print("Does .env exist?", os.path.exists(env_path))
 TARGET_GUILD_ID = int(os.environ.get("GUILD_ID"))
 TARGET_CHANNEL_ID = int(os.environ.get("CHANNEL_ID"))
 
+# Intitialize models
+initialize_constraint_classifier()
+initialize_intent_classifier()
+
 @client.event
 async def on_ready():
     print("Bot is now online")
@@ -44,12 +50,8 @@ async def on_message(message):
 
         # Respond
         else:
-            relevance = classifyRelevance(message.content)  # Modified for rag
-            print("Relevance:", relevance)                 # Modified for rag
-            print(message)
             output = aiResponse(input=message.content, userID=message.author.name)
-            update_chat_history(userID=message.author.name, role='user', message=message.content)
-            update_chat_history(userID=message.author.name, role='bot', message=output)
+            # m.add(messages=output, user_id=message.author.name, metadata={"role": "bot"})
             await message.channel.send(output)
     else:
         # Ignore messages not in the target guild and channel

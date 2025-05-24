@@ -30,9 +30,12 @@ from dotenv import load_dotenv
 import sys
 
 sys.path.append(os.path.abspath(r"app\Classifier Models"))
+# sys.path.append(os.path.abspath("app/Classifier Models"))         # for MacOS
 
 from get_constraint_classifier_outcome import get_constraint_prediction
 from get_intent_classifier_outcome import get_binary_outcome
+
+from mem0 import Memory
 
 def strip_whole_str(input_str: str, substr: str) -> str:
     """
@@ -58,6 +61,11 @@ retriever = index.as_retriever()
 
 # Chat History management using a SimpleChatStore instance
 chat_store = SimpleChatStore()
+
+# Store past chat history using mem0 memory layer
+m = Memory()
+
+
 
 # Function to get the memory module for a given user.
 def get_memory_module(userID: str):
@@ -140,16 +148,16 @@ llm = OpenAI(model="gpt-3.5-turbo", max_tokens=500)
 synthesizer = get_response_synthesizer(response_mode="compact")
 
 # Intent Classification: Process one sentence at a time.
-def classify_intent(sentence: str) -> str:
+def classify_intent(sentence: str) -> list:
     intent_result = get_binary_outcome(sentence)
     return intent_result
 
 # Constraints Classification: Process one sentence at a time.
-def classify_constraints(sentence, intent):
-    if intent['Provide_Preference'] == 1:
+def classify_constraints(sentence, intents):
+    if "Provide_Preference" in intents:
         constraint_result = get_constraint_prediction(sentence)
     else:
-        constraint_result = "N/A"
+        constraint_result = ["N/A"]
     return constraint_result
 
 # Update temporary JSON file using a user-specific filename (userID.json)
@@ -181,7 +189,7 @@ def get_classification_results(input_text, userID):
     # Split the full input into sentences (using a simple regex)
     sentences = re.split(r'(?<=[.!?])\s+', input_text.strip())
     
-    results_list = []
+    # results_list = []
     combined_results_lines = []
     intent_res = ""
     
@@ -191,20 +199,27 @@ def get_classification_results(input_text, userID):
             continue
         intent_res = classify_intent(sentence)
         constraint_res = classify_constraints(sentence, intent_res)
-        result_str = f"Sentence: {sentence}\nIntent: {intent_res}\nConstraints: {constraint_res}"
-        results_list.append(result_str)
+        result_str = f"Sentence: {sentence}\nIntents: {intent_res}\nConstraints: {constraint_res}"
+        
+        # Only add this sentence if it is not a question/inquiry.
+        if ("Inquire_Resources" not in intent_res) and ("Club_Related_Inquiry" not in intent_res) and ("Short_Answer_Inquiry" not in intent_res):
+            m.add(messages=sentence, user_id=userID, metadata={"intents": intent_res, "constraints": constraint_res})
+
+        # results_list.append(result_str)
         combined_results_lines.append(result_str)
     
     combined_results = "\n\n".join(combined_results_lines)
     
     # Store the combined results in the user-specific temporary JSON file.
-    new_entry = {
-        "input_text": input_text,
-        "classification_results": combined_results,
-    }
-    update_temp_json(new_entry, userID)
+    # new_entry = {
+    #     "input_text": input_text,
+    #     "classification_results": combined_results,
+    # }
+    # update_temp_json(new_entry, userID)
     
-    return results_list, combined_results, intent_res
+    # return results_list, combined_results, intent_res
+
+    return combined_results, intent_res
 
 def generate_missing_info_prompt(combined_results, query):
     """
@@ -212,7 +227,7 @@ def generate_missing_info_prompt(combined_results, query):
     that might be missing (such as device type, education level, language preference, etc.).
     """
     prompt = PromptTemplate(
-        "Based on the following classification details with 1 being true and 0 being false\n"
+        "Based on the following classification details\n"
         "{combined_results}\n"
         "This is the user query\n"
         "{query}\n\n"
@@ -266,44 +281,48 @@ def Classify_Action(combined_results: str) -> str:
 
 # aiResponse combined with past chat history
 def aiResponse(input, userID):
-    # For debugging: print the current chat_store content.
-    print("Current chat_store:", chat_store.store)
+    # For debugging: print all the memories for the current user.
+    print("Current memories: ", [memory["memory"] for memory in m.get_all(user_id=userID)["results"]])
     
     # Optionally, clear the chat history for a new conversation.
     # Uncomment the next line if you want to clear previous history:
     # clear_chat_history(userID)
 
     # Load any existing temporary classification results.
-    user_file = f"{userID}.json"
-    if os.path.exists(user_file):
-        with open(user_file, "r") as f:
-            past_results = json.load(f)
-    else:
-        past_results = []
+    # user_file = f"{userID}.json"
+    # if os.path.exists(user_file):
+    #     with open(user_file, "r") as f:
+    #         past_results = json.load(f)
+    # else:
+    #     past_results = []
+    
+    # Retrieve past conversations from the chat_store.
+    # past_context_str = "\n\n".join([f"{msg.role.value}: {msg.content}" for msg in get_chat_history(userID=userID)])
+    past_context_str = "\n".join([f"Memory: {memory['memory']}, Metadata: {memory["metadata"]}" for memory in m.search(input, user_id=userID)['results']])
 
     # Get classification results for the current user input.
-    results_list, combined_results, intent_res = get_classification_results(input, userID)
+    # results_list, combined_results, intent_res = get_classification_results(input, userID)
+    combined_results, intent_res = get_classification_results(input, userID)    
+
     # Optionally, you can combine past temporary results if desired:
-    results_list.extend(past_results)
+    # results_list.extend(past_results)
 
     classified_action = Classify_Action(combined_results)
     print(combined_results)
     print("Classified Action:", classified_action)
 
-    # Retrieve past conversations from the chat_store.
-    past_context_str = "\n\n".join([f"{msg.role.value}: {msg.content}" for msg in get_chat_history(userID=userID)])
     # Retrieve context from the vector database.
     nodes = retriever.retrieve(input)
     context_str = "\n\n".join([n.node.get_content() for n in nodes])
     print("Past Chat History:", past_context_str)
-    print("Vector Context:", context_str)
+    # print("Vector Context:", context_str)
     
     query_str = input
     past_context = past_context_str  # Use the actual past context
     
     if classified_action == "Answer a Question":
         print("intents", intent_res)
-        if(intent_res["Club_Related_Inquiry"] == 1):
+        if("Club_Related_Inquiry" in intent_res):
             qa_prompt = PromptTemplate(
                 "Below are the combined classification results derived from the user's query:\n"
                 "{combined_results}\n\n"
