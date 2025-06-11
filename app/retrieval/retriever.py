@@ -4,7 +4,7 @@ from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core.base.embeddings.base import BaseEmbedding
 from llama_index.core.schema import NodeWithScore
 from llama_index.core.vector_stores.types import VectorStore, VectorStoreQuery
-from app.retrieval.query_transformers import QueryTransformer
+from retrieval.query_transformers import QueryTransformer
 
 
 @dataclass

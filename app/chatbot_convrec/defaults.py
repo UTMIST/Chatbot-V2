@@ -2,9 +2,9 @@
 from llama_index.llms.openai import OpenAI
 from qdrant_client import QdrantClient
 from llama_index.vector_stores.qdrant import QdrantVectorStore
-from app.retrieval.query_transformers import LLMQueryTransformer
+from retrieval.query_transformers import LLMQueryTransformer
 from jinja2 import Template
-from app.retrieval.retriever import VectorStoreRetriever
+from retrieval.retriever import VectorStoreRetriever
 from llama_index.core import (
     VectorStoreIndex,
     SimpleDirectoryReader,

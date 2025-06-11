@@ -18,7 +18,7 @@ from enum import Enum
 import torch
 import re
 import json
-from app.chatbot_convrec.retrieve_recommendation import retrieve_recommendation
+from chatbot_convrec.retrieve_recommendation import retrieve_recommendation
 # Option 2: return a string (we use a raw LLM call for illustration)
 from llama_index.llms.openai import OpenAI
 from llama_index.core import PromptTemplate
