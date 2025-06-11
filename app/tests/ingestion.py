@@ -1,7 +1,7 @@
-from app.ingestion.pipeline import IngestionPipeline, PipelineConfig
-from app.ingestion.data_sources import LocalFileDataSource, LocalFileDataSourceConfig
-from app.ingestion.data_transformers import VectorDataTransformConfig, DefaultVectorTransformer, UniqueIDApplier, UniqueIDApplierConfig
-from app.ingestion.data_loaders import VectorStoreDataLoader, VectorStoreDataLoaderConfig
+from ingestion.pipeline import IngestionPipeline, PipelineConfig
+from ingestion.data_sources import LocalFileDataSource, LocalFileDataSourceConfig
+from ingestion.data_transformers import VectorDataTransformConfig, DefaultVectorTransformer, UniqueIDApplier, UniqueIDApplierConfig
+from ingestion.data_loaders import VectorStoreDataLoader, VectorStoreDataLoaderConfig
 import os
 from dotenv import load_dotenv
 from llama_index.core.vector_stores.simple import SimpleVectorStore

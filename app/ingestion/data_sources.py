@@ -1,4 +1,4 @@
-from app.ingestion.definitions import DataSource, DataSourceProcessStatus, DataSourceConfig
+from ingestion.definitions import DataSource, DataSourceProcessStatus, DataSourceConfig
 from dataclasses import dataclass
 from pandas import DataFrame
 import pandas as pd
