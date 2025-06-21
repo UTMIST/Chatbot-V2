@@ -248,13 +248,16 @@ def generate_missing_info_prompt(combined_results, query):
         print(f"Error in generate_missing_info_prompt: {e}")
         return "Could not determine missing information. Please provide any relevant details that might be missing."
 
-def Classify_Action(combined_results: str, query_str: str) -> str:
+def Classify_Action(combined_results: str, query_str: str, past_context: str) -> str:
     prompt = PromptTemplate(
-        "Below are the combined classification results derived from the user's query:\n"
-        "{combined_results}\n"
         "Below is the user query: "
         "{query_str}\n\n"
-        "Based on these results and information above, determine which of the following actions the bot should take:\n"
+        "Below are the classification results for each sentence in the user's query:\n"
+        "{combined_results}\n\n"
+        "Below is the user's past context:\n"
+        "{past_context}\n\n"
+
+        "Based on the information above, determine which of the following actions the bot should take:\n"
         "1. Request More Information\n"
         "2. Generate Recommendation\n"
         "3. Answer a Question\n"
@@ -268,7 +271,7 @@ def Classify_Action(combined_results: str, query_str: str) -> str:
         "- If the input does not fall into any of the categories above, classify as 'Other/Quick Response'.\n"
         "Please output exactly one of these phrases with exact capitalization."
     )
-    prompt_formatted = prompt.format(combined_results=combined_results)
+    prompt_formatted = prompt.format(combined_results=combined_results, query_str=query_str, past_context=past_context)
     local_prompt = PromptTemplate(prompt_formatted)
     query_engine = RAGStringQueryEngine(
         retriever=retriever,
@@ -298,7 +301,7 @@ def aiResponse(input, userID):
     
     # Retrieve past conversations from the chat_store.
     # past_context_str = "\n\n".join([f"{msg.role.value}: {msg.content}" for msg in get_chat_history(userID=userID)])
-    past_context_str = "\n".join([f"Memory: {memory['memory']}, Metadata: {memory["metadata"]}" for memory in m.search(input, user_id=userID)['results']])
+    past_context_str = "\n".join([f"Memory: {memory['memory']}, Metadata: {memory["metadata"]}" for memory in m.get_all(user_id=userID, limit=5)['results']])
 
     # Get classification results for the current user input.
     # results_list, combined_results, intent_res = get_classification_results(input, userID)
@@ -307,22 +310,24 @@ def aiResponse(input, userID):
     # Optionally, you can combine past temporary results if desired:
     # results_list.extend(past_results)
 
-    classified_action = Classify_Action(combined_results, input)
+    classified_action = Classify_Action(combined_results, input, past_context_str)
     print(combined_results)
     print("Classified Action:", classified_action)
 
-    # Retrieve context from the vector database.
-    nodes = retriever.retrieve(input)
-    context_str = "\n\n".join([n.node.get_content() for n in nodes])
     print("Past Chat History:", past_context_str)
-    # print("Vector Context:", context_str)
     
     query_str = input
     past_context = past_context_str  # Use the actual past context
     
     if classified_action == "Answer a Question":
         print("intents", intent_res)
+
         if("Club_Related_Inquiry" in intent_res):
+            # Retrieve context from the vector database.
+            nodes = retriever.retrieve(input)
+            context_str = "\n\n".join([n.node.get_content() for n in nodes])
+            # print("Vector Context:", context_str)
+
             qa_prompt = PromptTemplate(
                 "Below are the combined classification results derived from the user's query:\n"
                 "{combined_results}\n\n"
@@ -336,6 +341,13 @@ def aiResponse(input, userID):
                 "Make sure to use the context provided from the vector database to enrich your answer. "
                 "Keep your response simple and limited to 100 words."
             )
+            qa_prompt_formatted = qa_prompt.format(
+                combined_results=combined_results, 
+                past_context=past_context, 
+                context_str=context_str, 
+                query_str=query_str,
+            )
+
         else:
             qa_prompt = PromptTemplate(
                 "Below are the combined classification results derived from the user's query:\n"
@@ -348,17 +360,28 @@ def aiResponse(input, userID):
                 "Make sure to use the context provided from the vector database to enrich your answer. "
                 "Keep your response simple and limited to 100 words."
             )
+            qa_prompt_formatted = qa_prompt.format(
+                combined_results=combined_results, 
+                past_context=past_context,
+                query_str=query_str,
+            )
+
     elif classified_action == "Generate Recommendation":
         recommendations = retrieve_recommendation(constraints_res, query_str)
+        print(recommendations)
         qa_prompt = PromptTemplate(
             "You are a recommendation chatbot that is to provide the user with the best resource recommendations.\n"
             "Your task is the format the response given the information below such that you give the user the best recommendations according to their query.\n"
             "Your answer should not exceed 100 words.\n"
             "Below is the user query: \n"
             "{query_str}\n"
-            "Below is the already generated set of classification results: \n"
+            "Below is the already generated set of recommendations: \n"
             "{recommendations} \n"
             "Now format this information into a response to give to the user. Address the user as if you are talking to them directly."
+        )
+        qa_prompt_formatted = qa_prompt.format(
+            query_str=query_str,
+            # recommendations=recommendations,
         )
 
     elif classified_action == "Other/Quick Response":
@@ -368,25 +391,11 @@ def aiResponse(input, userID):
             "Limit your response to 50 words maximum."
         )
         qa_prompt_formatted = qa_prompt.format(query_str=input)
-        qa_prompt_local = PromptTemplate(qa_prompt_formatted)
-        query_engine = RAGStringQueryEngine(
-            retriever=retriever,
-            response_synthesizer=synthesizer,
-            llm=llm,
-            qa_prompt=qa_prompt_local,
-        )
-        response = query_engine.custom_query(qa_prompt_formatted)
-        return response
+
     else:
         # If classified action doesn't fall into the above categories, ask for missing info.
         missing_info_prompt = generate_missing_info_prompt(combined_results, input)
         return missing_info_prompt
-
-    qa_prompt_formatted = qa_prompt.format(
-        combined_results=combined_results, 
-        past_context=past_context, 
-        context_str=context_str, 
-        query_str=query_str)
     
     qa_prompt_local = PromptTemplate(qa_prompt_formatted)
     query_engine = RAGStringQueryEngine(
@@ -395,7 +404,7 @@ def aiResponse(input, userID):
         llm=llm,
         qa_prompt=qa_prompt_local,
     )
-    print(qa_prompt_formatted, "Prompt")
+    print(qa_prompt_formatted)
     response = query_engine.custom_query(qa_prompt_formatted)
     return response
 
