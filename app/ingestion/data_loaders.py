@@ -1,4 +1,4 @@
-from app.ingestion.definitions import DataLoader, DataLoadConfig
+from ingestion.definitions import DataLoader, DataLoadConfig
 from dataclasses import dataclass
 from llama_index.core.vector_stores.types import VectorStore
 from pandas import DataFrame
