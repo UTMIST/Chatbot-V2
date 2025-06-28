@@ -1,10 +1,10 @@
-from app.ingestion.pipeline import IngestionPipeline, PipelineConfig
-from app.ingestion.data_sources import LocalFileDataSource, LocalFileDataSourceConfig
-from app.ingestion.data_transformers import VectorDataTransformConfig, DefaultVectorTransformer, UniqueIDApplier, UniqueIDApplierConfig
-from app.ingestion.data_loaders import VectorStoreDataLoader, VectorStoreDataLoaderConfig
+from ingestion.pipeline import IngestionPipeline, PipelineConfig
+from ingestion.data_sources import LocalFileDataSource, LocalFileDataSourceConfig
+from ingestion.data_transformers import VectorDataTransformConfig, DefaultVectorTransformer, UniqueIDApplier, UniqueIDApplierConfig
+from ingestion.data_loaders import VectorStoreDataLoader, VectorStoreDataLoaderConfig
 import os
 from dotenv import load_dotenv
-from app.chatbot_convrec.defaults import DATA_SOURCE_FOLDER, DATA_SOURCE_FINISHED_FOLDER, VEC_STORE
+from chatbot_convrec.defaults import DATA_SOURCE_FOLDER, DATA_SOURCE_FINISHED_FOLDER, VEC_STORE
 
 if __name__ == "__main__":
 

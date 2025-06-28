@@ -1,4 +1,4 @@
-from app.ingestion.definitions import DataTransformConfig, DataTransformer
+from ingestion.definitions import DataTransformConfig, DataTransformer
 from dataclasses import dataclass, field
 import numpy as np
 from pandas import DataFrame

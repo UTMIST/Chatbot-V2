@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 from pandas import DataFrame
 
-from app.ingestion.definitions import (
+from ingestion.definitions import (
     DataSource,
     DataTransformer,
     DataLoader,

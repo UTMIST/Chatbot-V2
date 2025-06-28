@@ -1,8 +1,8 @@
-from app.retrieval.retriever import RetrievalConfig, VectorStoreRetriever
-from app.retrieval.query_transformers import LLMQueryTransformer
+from retrieval.retriever import RetrievalConfig, VectorStoreRetriever
+from retrieval.query_transformers import LLMQueryTransformer
 from llama_index.core.schema import NodeWithScore
 from jinja2 import Template
-from app.chatbot_convrec.defaults import DEFAULT_CONSTRAINTS_TO_QUERY_TRANSFORMER, DEFAULT_RECOMMENDATION_RETRIEVER
+from chatbot_convrec.defaults import DEFAULT_CONSTRAINTS_TO_QUERY_TRANSFORMER, DEFAULT_RECOMMENDATION_RETRIEVER
 
 
 def retrieve_recommendation(constraints: str,
