@@ -225,13 +225,13 @@ def generate_missing_info_prompt(combined_results, query):
     that might be missing (such as device type, education level, language preference, etc.).
     """
     prompt = PromptTemplate(
-        "Based on the following classification details\n"
+        "Based on the following classification details:\n"
         "{combined_results}\n"
-        "This is the user query\n"
+        "And the user’s original query:\n"
         "{query}\n\n"
         "Identify any crucial details that might be missing and would be of help to answer the user query and that are needed to provide an accurate recommendation. "
-        "Consider details such as device type, education level, language preference, time availability, etc. "
-        "If you find missing details, ask the user for them; if no additional information is needed, simply output 'None'."
+        "Directly ask one clear follow-up question to get that detail. "
+        "For example, “Which topic or industry are you interested in for the workshop?”"
     )
     try:
         prompt_formatted = prompt.format(combined_results=combined_results, query=query)
