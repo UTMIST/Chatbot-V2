@@ -6,7 +6,6 @@ from typing import Optional
 
 
 class DataSourceProcessStatus(Enum):
-
     SUCCESS = "success"
     FAILED = "failed"
 
@@ -35,30 +34,54 @@ class DataLoadConfig:
     pass
 
 
+# Qdrant-specific configurations
+
+@dataclass
+class QdrantDataLoadConfig(DataLoadConfig):
+    """
+    Configuration for loading embeddings into a Qdrant collection.
+    """
+    host: str                 # e.g. "abcd1234-xyz.qdrant.cloud"
+    port: int                 # e.g. 443 or 6333/6334
+    collection_name: str      # Name of the Qdrant collection
+    vector_size: int          # Dimensionality of your embeddings
+
+    # Defaults:
+    prefer_grpc: bool = True
+    api_key: Optional[str] = None
+    distance: str = "Cosine"  # or "Euclid", etc.
+
+@dataclass
+class QdrantDataSourceConfig(DataSourceConfig):
+    """
+    Configuration for querying embeddings out of Qdrant.
+    """
+    host: str
+    port: int
+    collection_name: str
+
+    # Defaults:
+    prefer_grpc: bool = True
+    api_key: Optional[str] = None
+
+
 class DataSource(ABC):
 
     def __init__(self, config: DataSourceConfig):
         self.config: DataSourceConfig = config
-        self.data : Optional[DataFrame] = None  
+        self.data: Optional[DataFrame] = None
 
     @abstractmethod
     def extract_data(self) -> None:
-        """
-        This method should load the data from the data source into the data warehouse.
-        """
         pass
 
     @abstractmethod
     def get_raw_data(self) -> DataFrame:
-        """
-        This method should return a DataFrame with the raw data from the data source.
-        """
+        pass
 
     @abstractmethod
     def update_process_status(self, status: DataSourceProcessStatus) -> None:
-        """
-        This method should update the process status of the data source and may modify the source data to reflect this.
-        """
+        pass
 
 
 class DataTransformer(ABC):
@@ -68,9 +91,6 @@ class DataTransformer(ABC):
 
     @abstractmethod
     def apply_transformation(self, raw_data: DataFrame) -> DataFrame:
-        """
-        This method should transform the raw data and return the resulting dataframe.
-        """
         pass
 
 
@@ -81,7 +101,4 @@ class DataLoader(ABC):
 
     @abstractmethod
     def load_data(self, data: DataFrame) -> None:
-        """
-        This method should load the data into the data warehouse.
-        """
         pass
