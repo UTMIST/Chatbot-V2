@@ -2,7 +2,7 @@ from typing import List, Dict, Any, Optional
 from dataclasses import dataclass, field
 from llama_index.embeddings.openai import OpenAIEmbedding
 from llama_index.core.base.embeddings.base import BaseEmbedding
-from llama_index.core.schema import NodeWithScore
+from llama_index.core.schema import NodeWithScore, TextNode
 from llama_index.core.vector_stores.types import VectorStore, VectorStoreQuery
 from retrieval.query_transformers import QueryTransformer
 
@@ -35,7 +35,7 @@ class VectorStoreRetriever:
         self.config = config or RetrievalConfig()
         self.vector_store = vector_store
 
-    async def retrieve(self, query: str) -> List[NodeWithScore]:
+    def retrieve(self, query: str) -> List[NodeWithScore]:
         """
         Retrieve the most relevant documents for a given query.
         
@@ -54,12 +54,12 @@ class VectorStoreRetriever:
         query_result = self.vector_store.query(
             vec_store_query
         )
+        nodes = [self.vector_store.data.metadata_dict[node_id]["Link"] for node_id in query_result.ids]
 
-        nodes = query_result.nodes
-        nodes_with_scores = [NodeWithScore(node=node, 
-                                           score=score) for node, score in zip(nodes, query_result.similarities) if score >= self.config.score_threshold]
+        # nodes = query_result.nodes
+        nodes = [node for node, score in zip(nodes, query_result.similarities) if score >= self.config.score_threshold]
 
-        return nodes_with_scores
+        return nodes
 
     def get_metadata_from_nodes(self, nodes: List[NodeWithScore]) -> List[Dict[str, Any]]:
         """

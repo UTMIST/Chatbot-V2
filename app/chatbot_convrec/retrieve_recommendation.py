@@ -5,7 +5,7 @@ from jinja2 import Template
 from chatbot_convrec.defaults import DEFAULT_CONSTRAINTS_TO_QUERY_TRANSFORMER, DEFAULT_RECOMMENDATION_RETRIEVER
 
 
-def retrieve_recommendation(constraints: str,
+def retrieve_recommendation(constraints: dict,
                             user_query: str,
                             constraints_to_query_transformer: LLMQueryTransformer = DEFAULT_CONSTRAINTS_TO_QUERY_TRANSFORMER,
                             vec_retriever: VectorStoreRetriever = DEFAULT_RECOMMENDATION_RETRIEVER) -> list[NodeWithScore]:

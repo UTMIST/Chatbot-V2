@@ -189,7 +189,8 @@ def get_classification_results(input_text, userID):
     
     # results_list = []
     combined_results_lines = []
-    intent_res = ""
+    intents = {}
+    constraints = {}
     
     # Process each sentence individually.
     for sentence in sentences:
@@ -198,6 +199,10 @@ def get_classification_results(input_text, userID):
         intent_res = classify_intent(sentence)
         constraint_res = classify_constraints(sentence, intent_res)
         result_str = f"Sentence: {sentence}\nIntents: {intent_res}\nConstraints: {constraint_res}"
+        if intent_res:
+            intents[sentence] = intent_res
+        if constraint_res != ["N/A"]:
+            constraints[sentence] = constraint_res
         
         # Only add this sentence if it is not a question/inquiry.
         if ("Inquire_Resources" not in intent_res) and ("Club_Related_Inquiry" not in intent_res) and ("Short_Answer_Inquiry" not in intent_res):
@@ -217,7 +222,7 @@ def get_classification_results(input_text, userID):
     
     # return results_list, combined_results, intent_res
 
-    return constraint_res, combined_results, intent_res
+    return constraints, combined_results, intents
 
 def generate_missing_info_prompt(combined_results, query):
     """
@@ -305,7 +310,7 @@ def aiResponse(input, userID):
 
     # Get classification results for the current user input.
     # results_list, combined_results, intent_res = get_classification_results(input, userID)
-    constraints_res, combined_results, intent_res = get_classification_results(input, userID)    
+    constraints, combined_results, intents = get_classification_results(input, userID)    
 
     # Optionally, you can combine past temporary results if desired:
     # results_list.extend(past_results)
@@ -320,9 +325,8 @@ def aiResponse(input, userID):
     past_context = past_context_str  # Use the actual past context
     
     if classified_action == "Answer a Question":
-        print("intents", intent_res)
 
-        if("Club_Related_Inquiry" in intent_res):
+        if any("Club_Related_Inquiry" in intents[s] for s in intents):
             # Retrieve context from the vector database.
             nodes = retriever.retrieve(input)
             context_str = "\n\n".join([n.node.get_content() for n in nodes])
@@ -367,7 +371,7 @@ def aiResponse(input, userID):
             )
 
     elif classified_action == "Generate Recommendation":
-        recommendations = retrieve_recommendation(constraints_res, query_str)
+        recommendations = retrieve_recommendation(constraints, query_str)
         print(recommendations)
         qa_prompt = PromptTemplate(
             "You are a recommendation chatbot that is to provide the user with the best resource recommendations.\n"
@@ -381,7 +385,7 @@ def aiResponse(input, userID):
         )
         qa_prompt_formatted = qa_prompt.format(
             query_str=query_str,
-            # recommendations=recommendations,
+            recommendations=recommendations,
         )
 
     elif classified_action == "Other/Quick Response":
