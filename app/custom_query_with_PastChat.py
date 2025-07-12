@@ -2,7 +2,6 @@ from llama_index.core.query_engine import CustomQueryEngine
 from llama_index.core.retrievers import BaseRetriever
 from llama_index.core import get_response_synthesizer
 from llama_index.core.response_synthesizers import BaseSynthesizer
-from llama_index.core.storage.chat_store import SimpleChatStore
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core.base.llms.types import ChatMessage, MessageRole
 from llama_index.core import (
@@ -59,47 +58,9 @@ index = load_index_from_storage(storage_context)
 # Combine existing index with new index
 retriever = index.as_retriever()
 
-# Chat History management using a SimpleChatStore instance
-chat_store = SimpleChatStore()
-
 # Store past chat history using mem0 memory layer
 m = Memory()
 
-# Function to get the memory module for a given user.
-def get_memory_module(userID: str):
-    if userID not in chat_store.get_keys():
-        return ChatMemoryBuffer.from_defaults(
-            token_limit=1500,
-            chat_store=chat_store,
-            chat_store_key=userID,
-        )
-    else:
-        chat_memory = ChatMemoryBuffer(token_limit=1500)
-        chat_memory.set(chat_store.store.get(userID))
-        return chat_memory
-
-# Add new messages to the user's chat history.
-def update_chat_history(userID: str, role: str, message: str) -> None:
-    chat_memory = get_memory_module(userID)
-    if role == 'user':
-        chat_memory.put(ChatMessage(role=MessageRole.USER, content=message))
-    elif role == 'bot':
-        chat_memory.put(ChatMessage(role=MessageRole.CHATBOT, content=message))
-
-# Retrieve the chat history for a specific user.
-def get_chat_history(userID: str) -> list[ChatMessage]:
-    if userID not in chat_store.get_keys():
-        return []
-    return chat_store.store.get(userID)
-
-# NEW: Function to clear chat history for a specific user.
-def clear_chat_history(userID: str) -> None:
-    if userID in chat_store.store:
-        chat_store.store.pop(userID)
-        print(f"Chat history for user '{userID}' has been cleared.")
-
-def embed_chat_history(chat_history):
-    pass
 
 class RAGStringQueryEngine(CustomQueryEngine):
     """RAG String Query Engine."""
