@@ -57,7 +57,7 @@ class VectorStoreRetriever:
         nodes = [self.vector_store.data.metadata_dict[node_id]["Link"] for node_id in query_result.ids]
 
         # nodes = query_result.nodes
-        nodes = [node for node, score in zip(nodes, query_result.similarities) if score >= self.config.score_threshold]
+        nodes = [f"<{node}>" for node, score in zip(nodes, query_result.similarities) if score >= self.config.score_threshold]
 
         return nodes
 
