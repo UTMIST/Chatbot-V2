@@ -7,6 +7,12 @@ from llama_index.core.node_parser import SentenceSplitter
 from llama_index.core.extractors import TitleExtractor
 from llama_index.core.ingestion import IngestionPipeline
 import qdrant_client
+from llama_index.core import (
+    VectorStoreIndex,
+    SimpleDirectoryReader,
+    StorageContext,
+    load_index_from_storage,
+)
 from llama_index.vector_stores.qdrant import QdrantVectorStore 
 from llama_index.core import VectorStoreIndex
 from llama_index.core.extractors import (
@@ -16,13 +22,17 @@ from llama_index.core.extractors import (
     KeywordExtractor
 )
 from llama_index.core.schema import MetadataMode, Document
+from dotenv import load_dotenv
 
-os.environ["OPENAI_API_KEY"] = "Your Key"
+load_dotenv()
+
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 # Set up OpenAI API key
 llm = OpenAI(temperature=0.1, model="gpt-3.5-turbo")
 
 # Define the directory containing the text files
-directory = '/Users/dingshengliu/Desktop/ChatbotAI/AI Chatbot Version 2/app/data'
+desktop = os.path.expanduser("~\Desktop")
+directory = os.path.join(desktop, "Chatbot Code\\app\\data")
 
 # Function to read text files and create Document objects
 def read_files(directory):
@@ -30,16 +40,18 @@ def read_files(directory):
     for filename in os.listdir(directory):
         if filename.endswith(".txt"):
             file_path = os.path.join(directory, filename)
-            with open(file_path, 'r') as file:
+            with open(file_path, encoding = "utf-8") as file:
                 content = file.read()
                 documents.append(Document(text=content))
     return documents
 
+#qdrant_key = 'Your Key'
+
 from qdrant_client import QdrantClient
 
 qdrant_client = QdrantClient(
-    url="https://5f8102de-7129-4a0a-8bb2-166dd7c92682.us-east4-0.gcp.cloud.qdrant.io:6333", 
-    api_key="TDT673LkRUY2e-CfBa4H1m9U8pufQjk3h_BCoXbpfIp6KfcjS1XRog",
+    url="local url", 
+    #api_key=qdrant_key
 )
 
 vector_store = QdrantVectorStore(client=qdrant_client, collection_name = "test") 
@@ -59,5 +71,8 @@ pipeline = IngestionPipeline(
 documents = read_files(directory)
 nodes = pipeline.run(documents=documents)
 
-index = VectorStoreIndex(nodes=nodes)
+storage_context = StorageContext.from_defaults(persist_dir="./storage")
+index = load_index_from_storage(storage_context)
+index.insert_nodes(nodes)
+
 index.storage_context.persist()
