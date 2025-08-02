@@ -19,10 +19,14 @@ descriptions = {}
 def generate_description(content):
     prompt = (
         "Generate a description for these machine learning resources. "
-        "In the description identify constraints such as language requirements, "
-        "system requirements, prerequisite knowledge, accessibility, budget, "
-        "learning style, time commitment, level of depth, preferred topics and "
-        "format preferences. Write the description as one long paragraph.:\n\n"
+        "First give a general description of what the resource offers. "
+        "Then the description should be generated in a list of constraints such as language requirements, "
+        "system requirements (IOS, Android), prerequisite knowledge needed (Level of Math, Level of Coding, Level of the Language), "
+        "accessibility (Audio, Visual etc.), budget (What does it cost?), "
+        "learning style (Video, Audio, Book etc.), time commitment (How long should it take to read/watch/learn),"
+        "Write it in the form of a short paragraph then a list with consistent syntax such as:"
+        "\' The paragraph description\'. \' language_requirement: English. system_requirement: IOS/Android/Windows etc.... \'"
+        ""
         f"{content}\n\nDescription:"
     )
     response = client.chat.completions.create(

@@ -4,6 +4,7 @@ import os, logging
 from typing import List
 from pandas import DataFrame
 from dotenv import load_dotenv
+from pathlib import Path
 
 from .definitions      import DataSourceProcessStatus
 from .data_sources     import LocalFileDataSource, LocalFileDataSourceConfig
@@ -76,7 +77,7 @@ if __name__ == "__main__":
     source_cfg = LocalFileDataSourceConfig(
         source_dir="app/data",
         target_dir="app/data",
-        file_names=["RelevanceDataLabelled.csv"],
+        file_names=["finished\succeeded\ml_resources (2).csvCombined_Dataset_Constraint.csv"],
     )
     source = LocalFileDataSource(source_cfg)
 
@@ -88,7 +89,7 @@ if __name__ == "__main__":
             metadata_columns=["id", "Relevance"],
         )
     )
-
+    print(os.getenv("QDRANT_HOST"))
     # — 3) Configure loader —
     load_cfg = QdrantDataLoadConfig(
         host=os.getenv("QDRANT_HOST"),
