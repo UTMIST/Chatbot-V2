@@ -185,19 +185,24 @@ def get_classification_results(input_text, userID):
 
     return constraints, combined_results, intents
 
-def generate_missing_info_prompt(combined_results, query):
-    """
-    Sends the combined classification details to GPT and asks it to identify any crucial details 
-    that might be missing (such as device type, education level, language preference, etc.).
-    """
+def generate_missing_info_prompt(combined_results, query, past_context_str):
     prompt = PromptTemplate(
-        "Based on the following classification details:\n"
-        "{combined_results}\n"
+        "Given the follwing information: "
+        "The user's crucial context: "
+        "{past_context_str}\n"
         "And the user’s original query:\n"
         "{query}\n\n"
         "Identify any crucial details that might be missing and would be of help to answer the user query and that are needed to provide an accurate recommendation. "
-        "Directly ask one clear follow-up question to get that detail. "
-        "For example, “Which topic or industry are you interested in for the workshop?”"
+        "Crucial details are split into hard and soft constraints"
+        "The follwing are hard constraints that we must have information on: \n"
+        "language_requirements (English, French, Chinese, etc.), "
+        "System: IOS, Android, Windows etc., Prequisite knowledge level (University, High-School, math, coding etc.)"
+        "Accessibility: Visual/Audio Impaired?"
+        "Budget: Free or Cost?"
+        "The following are soft constraints: \n"
+        "Learning Style, Time Commitment, Level of depth, preferred topics and any format preferences."
+        "Make sure to ask the user of any of the hard constraints we have no information on and soft constraints that you identify that we also know nothing about to give the user a better informed suggestion later."
+        "Be sure to talk to the user in second person. Talk as if you are talking to the user directly."
     )
     try:
         prompt_formatted = prompt.format(combined_results=combined_results, query=query)
@@ -231,10 +236,19 @@ def Classify_Action(combined_results: str, query_str: str, past_context: str) ->
 
         "Consider the following:\n"
         "- When little is known about the user and their preferences (such as device type, education level, language preference, time availability, budget and other preferences), output 'Request More Information'.\n"
-        "- If the user appears to be seeking personalized recommendation and only when sufficient information is present, output 'Generate Recommendation'.\n"
-        "- If they want a recommendation, but not enough information is present, output 'Request More Information'.\n"
         "- If the query is straightforward and answerable, output 'Answer a Question'.\n"
-        "- If the input does not fall into any of the categories above, classify as 'Other/Quick Response'.\n"
+        "- If they want a recommendation, but not enough information is present, output 'Request More Information'.\n"
+        "Request more information if the user query is asking for something, and any one of these hard constraints are not met and/or any soft constraint we have 0 information about. The constraints are listed below: \n"
+        "Crucial details are split into hard and soft constraints"
+        "The follwing are hard constraints that we must have information on: \n"
+        "language_requirements (English, French, Chinese, etc.), "
+        "System: IOS, Android, Windows etc., Prequisite knowledge level (University, High-School, math, coding etc.)"
+        "Accessibility: Visual/Audio Impaired?"
+        "Budget: Free or Cost?"
+        "The following are soft constraints: \n"
+        "Learning Style, Time Commitment, Level of depth, preferred topics and any format preferences.\n"
+        "- If the input does not fall into any of the categories above or the query just requires a quick answer, classify as 'Other/Quick Response'.\n"
+        "- If the user appears to be seeking personalized recommendation and only when sufficient information(Outlined by the information required by the request more information output) is present, output 'Generate Recommendation'.\n"
         "Please output exactly one of these phrases with exact capitalization."
     )
     prompt_formatted = prompt.format(combined_results=combined_results, query_str=query_str, past_context=past_context)
@@ -359,7 +373,7 @@ def aiResponse(input, userID):
 
     else:
         # If classified action doesn't fall into the above categories, ask for missing info.
-        missing_info_prompt = generate_missing_info_prompt(combined_results, input)
+        missing_info_prompt = generate_missing_info_prompt(combined_results, input, past_context_str)
         return missing_info_prompt
     
     qa_prompt_local = PromptTemplate(qa_prompt_formatted)
