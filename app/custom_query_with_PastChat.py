@@ -2,7 +2,6 @@ from llama_index.core.query_engine import CustomQueryEngine
 from llama_index.core.retrievers import BaseRetriever
 from llama_index.core import get_response_synthesizer
 from llama_index.core.response_synthesizers import BaseSynthesizer
-from llama_index.core.storage.chat_store import SimpleChatStore
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core.base.llms.types import ChatMessage, MessageRole
 from llama_index.core import (
@@ -59,47 +58,9 @@ index = load_index_from_storage(storage_context)
 # Combine existing index with new index
 retriever = index.as_retriever()
 
-# Chat History management using a SimpleChatStore instance
-chat_store = SimpleChatStore()
-
 # Store past chat history using mem0 memory layer
 m = Memory()
 
-# Function to get the memory module for a given user.
-def get_memory_module(userID: str):
-    if userID not in chat_store.get_keys():
-        return ChatMemoryBuffer.from_defaults(
-            token_limit=1500,
-            chat_store=chat_store,
-            chat_store_key=userID,
-        )
-    else:
-        chat_memory = ChatMemoryBuffer(token_limit=1500)
-        chat_memory.set(chat_store.store.get(userID))
-        return chat_memory
-
-# Add new messages to the user's chat history.
-def update_chat_history(userID: str, role: str, message: str) -> None:
-    chat_memory = get_memory_module(userID)
-    if role == 'user':
-        chat_memory.put(ChatMessage(role=MessageRole.USER, content=message))
-    elif role == 'bot':
-        chat_memory.put(ChatMessage(role=MessageRole.CHATBOT, content=message))
-
-# Retrieve the chat history for a specific user.
-def get_chat_history(userID: str) -> list[ChatMessage]:
-    if userID not in chat_store.get_keys():
-        return []
-    return chat_store.store.get(userID)
-
-# NEW: Function to clear chat history for a specific user.
-def clear_chat_history(userID: str) -> None:
-    if userID in chat_store.store:
-        chat_store.store.pop(userID)
-        print(f"Chat history for user '{userID}' has been cleared.")
-
-def embed_chat_history(chat_history):
-    pass
 
 class RAGStringQueryEngine(CustomQueryEngine):
     """RAG String Query Engine."""
@@ -189,7 +150,8 @@ def get_classification_results(input_text, userID):
     
     # results_list = []
     combined_results_lines = []
-    intent_res = ""
+    intents = {}
+    constraints = {}
     
     # Process each sentence individually.
     for sentence in sentences:
@@ -198,6 +160,10 @@ def get_classification_results(input_text, userID):
         intent_res = classify_intent(sentence)
         constraint_res = classify_constraints(sentence, intent_res)
         result_str = f"Sentence: {sentence}\nIntents: {intent_res}\nConstraints: {constraint_res}"
+        if intent_res:
+            intents[sentence] = intent_res
+        if constraint_res != ["N/A"]:
+            constraints[sentence] = constraint_res
         
         # Only add this sentence if it is not a question/inquiry.
         if ("Inquire_Resources" not in intent_res) and ("Club_Related_Inquiry" not in intent_res) and ("Short_Answer_Inquiry" not in intent_res):
@@ -217,7 +183,7 @@ def get_classification_results(input_text, userID):
     
     # return results_list, combined_results, intent_res
 
-    return constraint_res, combined_results, intent_res
+    return constraints, combined_results, intents
 
 def generate_missing_info_prompt(combined_results, query):
     """
@@ -305,7 +271,7 @@ def aiResponse(input, userID):
 
     # Get classification results for the current user input.
     # results_list, combined_results, intent_res = get_classification_results(input, userID)
-    constraints_res, combined_results, intent_res = get_classification_results(input, userID)    
+    constraints, combined_results, intents = get_classification_results(input, userID)    
 
     # Optionally, you can combine past temporary results if desired:
     # results_list.extend(past_results)
@@ -320,9 +286,8 @@ def aiResponse(input, userID):
     past_context = past_context_str  # Use the actual past context
     
     if classified_action == "Answer a Question":
-        print("intents", intent_res)
 
-        if("Club_Related_Inquiry" in intent_res):
+        if any("Club_Related_Inquiry" in intents[s] for s in intents):
             # Retrieve context from the vector database.
             nodes = retriever.retrieve(input)
             context_str = "\n\n".join([n.node.get_content() for n in nodes])
@@ -367,7 +332,7 @@ def aiResponse(input, userID):
             )
 
     elif classified_action == "Generate Recommendation":
-        recommendations = retrieve_recommendation(constraints_res, query_str)
+        recommendations = retrieve_recommendation(constraints, query_str)
         print(recommendations)
         qa_prompt = PromptTemplate(
             "You are a recommendation chatbot that is to provide the user with the best resource recommendations.\n"
@@ -381,7 +346,7 @@ def aiResponse(input, userID):
         )
         qa_prompt_formatted = qa_prompt.format(
             query_str=query_str,
-            # recommendations=recommendations,
+            recommendations=recommendations,
         )
 
     elif classified_action == "Other/Quick Response":

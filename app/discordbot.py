@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands, tasks
 # Modified for rag
-from custom_query_with_PastChat import aiResponse, m
+from custom_query_with_PastChat import aiResponse
 from get_constraint_classifier_outcome import initialize_constraint_classifier
 from get_intent_classifier_outcome import initialize_intent_classifier
 # from rag_handler import ai_response, save_unanswered_queries, update_vector_database  
@@ -51,7 +51,6 @@ async def on_message(message):
         # Respond
         else:
             output = aiResponse(input=message.content, userID=message.author.name)
-            # m.add(messages=output, user_id=message.author.name, metadata={"role": "bot"})
             await message.channel.send(output)
     else:
         # Ignore messages not in the target guild and channel
