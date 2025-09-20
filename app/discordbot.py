@@ -2,8 +2,8 @@ import discord
 from discord.ext import commands, tasks
 # Modified for rag
 from custom_query_with_PastChat import aiResponse
-from get_constraint_classifier_outcome import initialize_constraint_classifier
-from get_intent_classifier_outcome import initialize_intent_classifier
+from Classifier_Models.get_constraint_classifier_outcome import initialize_constraint_classifier
+from Classifier_Models.get_intent_classifier_outcome import initialize_intent_classifier
 # from rag_handler import ai_response, save_unanswered_queries, update_vector_database  
 import os
 import os.path
@@ -84,5 +84,6 @@ async def on_reaction_add(reaction, user):
 #     update_vector_database()
 
 discord_key = os.environ.get("DISCORD_KEY")
+print("Discord Key Loaded:", discord_key)
 client.run(f"{discord_key}")
 
