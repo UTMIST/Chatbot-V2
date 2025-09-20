@@ -1,6 +1,6 @@
 import torch
 from transformers import RobertaTokenizer
-from Intent_Classifier import RobertaClassifier, LABELS, MAX_LENGTH, MODEL_SAVE_PATH
+from Classifier_Models.Intent_Classifier import RobertaClassifier, LABELS, MAX_LENGTH, MODEL_SAVE_PATH
 
 def initialize_intent_classifier():
     global model, tokenizer, device

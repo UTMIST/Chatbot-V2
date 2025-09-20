@@ -31,8 +31,8 @@ import sys
 sys.path.append(os.path.abspath(r"app\Classifier Models"))
 # sys.path.append(os.path.abspath("app/Classifier Models"))         # for MacOS
 
-from get_constraint_classifier_outcome import get_constraint_prediction
-from get_intent_classifier_outcome import get_binary_outcome
+from Classifier_Models.get_constraint_classifier_outcome import get_constraint_prediction
+from Classifier_Models.get_intent_classifier_outcome import get_binary_outcome
 
 from mem0 import Memory
 
@@ -281,7 +281,7 @@ def aiResponse(input, userID):
     
     # Retrieve past conversations from the chat_store.
     # past_context_str = "\n\n".join([f"{msg.role.value}: {msg.content}" for msg in get_chat_history(userID=userID)])
-    past_context_str = "\n".join([f"Memory: {memory['memory']}, Metadata: {memory["metadata"]}" for memory in m.get_all(user_id=userID, limit=5)['results']])
+    past_context_str = "\n".join([f"Memory: {memory['memory']}, Metadata: {memory['metadata']}" for memory in m.get_all(user_id=userID, limit=5)['results']])
 
     # Get classification results for the current user input.
     # results_list, combined_results, intent_res = get_classification_results(input, userID)

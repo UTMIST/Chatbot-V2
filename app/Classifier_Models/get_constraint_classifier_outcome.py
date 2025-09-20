@@ -1,6 +1,6 @@
 import torch
 from transformers import RobertaTokenizer
-from classifierconstraint import RobertaClassifier, NUM_CLASSES, MAX_LENGTH, MODEL_SAVE_PATH
+from Classifier_Models.classifierconstraint import RobertaClassifier, NUM_CLASSES, MAX_LENGTH, MODEL_SAVE_PATH
 
 def initialize_constraint_classifier():
     global model, tokenizer, device

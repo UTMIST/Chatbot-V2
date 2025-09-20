@@ -21,15 +21,15 @@ LABELS = ["Provide_Preference", "Accept_Recommendation", "Reject_Recommendation"
 NUM_LABELS = len(LABELS)
 
 # File paths (change these to your local paths)
-LABELLED_FILE = r"app\data\Combined_Dataset.csv"     # e.g., "./data/labelled.csv"
-# LABELLED_FILE = "app/data/Combined_Dataset.csv"       # for MacOS
+# LABELLED_FILE = r"app\data\Combined_Dataset.csv"     # e.g., "./data/labelled.csv"
+LABELLED_FILE = "app/data/Combined_Dataset.csv"       # for MacOS
 
-UNLABELLED_FILE = r"app\data\unlabelled.csv"         # e.g., "./data/unlabelled.csv"
-# UNLABELLED_FILE = "app/data/unlabelled.csv"           # for MacOS
+# UNLABELLED_FILE = r"app\data\unlabelled.csv"         # e.g., "./data/unlabelled.csv"
+UNLABELLED_FILE = "app/data/unlabelled.csv"           # for MacOS
 
 # Model save path
-MODEL_SAVE_PATH = r"app\Classifier Models\intent_classification.pth"
-# MODEL_SAVE_PATH = "app/Classifier Models/intent_classification.pth"       # for MacOS
+# MODEL_SAVE_PATH = r"app\Classifier_Models\intent_classification.pth"
+MODEL_SAVE_PATH = "app/Classifier_Models/intent_classification.pth"       # for MacOS
 
 # Use Automatic Mixed Precision if using CUDA
 USE_AMP = True
